@@ -7,6 +7,7 @@ if __name__ == '__main__':
     path_a='e:\test.csv'
     a= open("e:/test.csv",'r')
     reader=csv.reader(a)
+    #按行读取
     rows=[row for row in reader]
     #从csv文件中取出url链接，然后使用爬虫进行访问获取
     for i in rows:
