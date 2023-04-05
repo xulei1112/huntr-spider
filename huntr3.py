@@ -32,7 +32,10 @@ if __name__ == '__main__':
             if "CWE" in i:
                 #print(i)
                 bb=i
+        #tt是定位github的修复代码链接
+        tt=web.find_element(By.CSS_SELECTOR,'#message-box > div.text-sm.font-medium.w-full.mt-1 > div:nth-child(1) > div.inline-block.self-center.mx-2 > a.break-words.hover\:text-blue-400.hover\:underline')
+        #print(tt.get_attribute('href'))
 
         with open('e:/test2.csv','a',newline='') as result:
             writer=csv.writer(result)
-            writer.writerow([j[0],ele[0],ele[4],aa,bb])
+            writer.writerow([j[0],ele[0],ele[4],aa,bb,tt.get_attribute('href')])
