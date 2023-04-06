@@ -12,7 +12,7 @@ if __name__ == '__main__':
         tt=j[5]
         web2= Chrome()
         web2.get(tt)
-    #漏洞代码
+        #漏洞代码
+        #修复代码
         new_code=web2.find_element(By.CSS_SELECTOR,'#files > div.js-diff-progressive-container')
-    #修复代码
         print(new_code.text)
