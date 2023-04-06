@@ -1,5 +1,5 @@
 # huntr-spider
-huntr1.py用来从huntr网站（https://huntr.dev/）
+huntr1.py用来从huntr网站（https://huntr.dev/ ）
 爬取漏洞文章链接
 ![image](https://user-images.githubusercontent.com/64565724/230029991-d921541a-cb6b-4e0d-92f3-b75fc11c6fc0.png)
 
