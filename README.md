@@ -1,4 +1,5 @@
 # huntr-spider
+默认输入输出路径均为e盘，需要提前修改自己实际路径
 huntr1.py用来从huntr网站（https://huntr.dev/ ）
 爬取漏洞文章链接
 ![image](https://user-images.githubusercontent.com/64565724/230029991-d921541a-cb6b-4e0d-92f3-b75fc11c6fc0.png)
