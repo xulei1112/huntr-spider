@@ -38,7 +38,7 @@ if __name__ == '__main__':
         web2= Chrome()
         #访问github链接
         web2.get(tt.get_attribute('href')+'?diff=split')
-        #获取漏洞代码#//*[@data-details-container-group="file"]/div[2]/div/table/tbody/tr/td[2]
+        #获取修复代码#files > div.js-diff-progressive-container
         ff=""
         #正则表达式匹配
         old_code=web2.find_elements(By.XPATH,'//*[@data-details-container-group="file"]/div[2]/div/table/tbody/tr/td[2]')
@@ -48,6 +48,6 @@ if __name__ == '__main__':
         web3=Chrome()
         web3.get(tt.get_attribute('href')+'?diff=unified')
         new_code=web3.find_element(By.CSS_SELECTOR,'#files > div.js-diff-progressive-container')
-        with open('e:/test3.csv','a',newline='',encoding='utf-8') as result:
+        with open('e:/test3.csv','a+',newline='',encoding='utf-8') as result:
             writer=csv.writer(result)
             writer.writerow([j[0],ele[0],ele[4],aa,bb,tt.get_attribute('href'),ff,new_code.text])
