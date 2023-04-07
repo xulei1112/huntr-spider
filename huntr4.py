@@ -38,13 +38,12 @@ if __name__ == '__main__':
         web2= Chrome()
         #访问github链接
         web2.get(tt.get_attribute('href')+'?diff=split')
-        #获取修复代码#files > div.js-diff-progressive-container
+        #获取漏洞代码#//*[@data-details-container-group="file"]/div[2]/div/table/tbody/tr/td[2]
         ff=""
         #正则表达式匹配
         old_code=web2.find_elements(By.XPATH,'//*[@data-details-container-group="file"]/div[2]/div/table/tbody/tr/td[2]')
         for i in old_code:
             ff+=i.text+'\n'
-        print(ff)
 
         web3=Chrome()
         web3.get(tt.get_attribute('href')+'?diff=unified')
