@@ -19,3 +19,6 @@ huntr4.py用来爬取github中的漏洞修复代码与漏洞代码
 此项目可以作为漏洞数据集等利用，用于漏洞研究与科研等
 ![image](https://user-images.githubusercontent.com/64565724/230545240-b1cf7718-c70f-41c4-bf00-5826c2373364.png)
 有较好的反爬虫效果
+
+huntr5.py用来爬取指定代码类型的（比如C语言）
+![image](https://user-images.githubusercontent.com/64565724/231428910-f8329278-43ca-434a-a469-91b35db92282.png)
