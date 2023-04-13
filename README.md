@@ -1,7 +1,7 @@
 ![huntr-spider](https://socialify.git.ci/xulei1112/huntr-spider/image?font=Source%20Code%20Pro&language=1&logo=https%3A%2F%2Favatars.githubusercontent.com%2Fu%2F64565724%3Fv%3D4&name=1&pattern=Overlapping%20Hexagons&theme=Dark)
 # huntr-spider
 默认输入输出路径均为e盘，需要提前修改自己实际路径
-
+geckodriver与chorm驱动需要根据自己电脑浏览器的实际版本修改，具体可以百度，我这里提供的是适合我自己电脑浏览器版本的驱动
 
 huntr1.py用来从huntr网站（https://huntr.dev/ ）
 爬取漏洞文章链接
