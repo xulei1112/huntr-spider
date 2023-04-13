@@ -21,4 +21,5 @@ huntr4.py用来爬取github中的漏洞修复代码与漏洞代码
 有较好的反爬虫效果
 
 huntr5.py用来爬取指定代码类型的（比如C语言），换成火狐浏览器驱动，防止内存溢出，导致无法大量爬取数据
-![image](https://user-images.githubusercontent.com/64565724/231428910-f8329278-43ca-434a-a469-91b35db92282.png)
+![image](https://user-images.githubusercontent.com/64565724/231638855-715182f1-6b4e-4d1f-8d7d-770a70279179.png)
+
