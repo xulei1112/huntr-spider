@@ -1,0 +1,2387 @@
+heap-buffer-overflow in gf_isom_box_write_header in gpac/gpac,,CWE-122: Heap-based Buffer Overflow," u32 type;
+ GF_UnknownBox *ptr = (GF_UnknownBox *)s;
+ if (!s) return GF_BAD_PARAM;
+ if (ptr->original_4cc == GF_ISOM_BOX_TYPE_UUID) return GF_BAD_PARAM;
+ type = s->type;
+ ptr->type = ptr->original_4cc;
+ e = gf_isom_box_write_header(s, bs);
+ GF_GenericSampleEntryBox *ptr = (GF_GenericSampleEntryBox *)s;
+
+ //careful we are not writing the box type but the entry type so switch for write
+ if (ptr->EntryType == GF_ISOM_BOX_TYPE_UUID) return GF_BAD_PARAM;
+ ptr->type = ptr->EntryType;
+ e = gf_isom_box_write_header(s, bs);
+ if (e) return e;
+ GF_GenericVisualSampleEntryBox *ptr = (GF_GenericVisualSampleEntryBox *)s;
+
+ //careful we are not writing the box type but the entry type so switch for write
+ if (ptr->EntryType == GF_ISOM_BOX_TYPE_UUID) return GF_BAD_PARAM;
+ ptr->type = ptr->EntryType;
+ e = gf_isom_box_write_header(s, bs);
+ if (e) return e;
+ GF_GenericAudioSampleEntryBox *ptr = (GF_GenericAudioSampleEntryBox *)s;
+
+ //careful we are not writing the box type but the entry type so switch for write
+ if (ptr->EntryType == GF_ISOM_BOX_TYPE_UUID) return GF_BAD_PARAM;
+ ptr->type = ptr->EntryType;
+ e = gf_isom_box_write_header(s, bs);
+ if (e) return e;
+ GF_Err e;
+ u32 i;
+ GF_TrackReferenceTypeBox *ptr = (GF_TrackReferenceTypeBox *)s;
+ if (ptr->reference_type == GF_ISOM_BOX_TYPE_UUID) return GF_BAD_PARAM;
+ ptr->type = ptr->reference_type;
+ e = gf_isom_box_write_header(s, bs);
+ ptr->type = GF_ISOM_BOX_TYPE_REFT;
+ GF_Err e;
+ GF_TrackGroupTypeBox *ptr = (GF_TrackGroupTypeBox *) s;
+ if (!s) return GF_BAD_PARAM;
+ if (ptr->group_type == GF_ISOM_BOX_TYPE_UUID) return GF_BAD_PARAM;
+ s->type = ptr->group_type;
+ e = gf_isom_full_box_write(s, bs);
+ s->type = GF_ISOM_BOX_TYPE_TRGT;
+"
+Uncontrolled Memory Allocation in function lodepng_realloc in hpjansson/chafa,,CWE-770: Allocation of Resources Without Limits or Throttling,"      expected_size += lodepng_get_raw_size_idat((*w + 0), (*h + 0) >> 1, bpp);
+    }
+
+    if(expected_size > LODEPNG_IMAGE_DATA_SIZE_MAX) {
+      state->error = 114;
+    }
+  }
+
+  if (!state->error) {
+    state->error = zlib_decompress(&scanlines, &scanlines_size, expected_size, idat, idatsize, &state->decoder.zlibsettings);
+  }
+
+  if(!state->error && scanlines_size != expected_size) state->error = 91; /*decompressed size doesn't match prediction*/
+  lodepng_free(idat);
+
+  if(!state->error) {
+    outsize = lodepng_get_raw_size(*w, *h, &state->info_png.color);
+    if (outsize > LODEPNG_IMAGE_DATA_SIZE_MAX) {
+      state->error = 114;
+    }
+  }
+
+  if(!state->error) {
+    *out = (unsigned char*)lodepng_malloc(outsize);
+    if(!*out) state->error = 83; /*alloc fail*/
+  }
+
+  if(!state->error) {
+    lodepng_memset(*out, 0, outsize);
+    state->error = postProcessScanlines(*out, scanlines, *w, *h, &state->info_png);
+    /*max ICC size limit can be configured in LodePNGDecoderSettings. This error prevents
+    unreasonable memory consumption when decoding due to impossibly large ICC profile*/
+    case 113: return ""ICC profile unreasonably large"";
+    /*max size of an in-memory image buffer*/
+    case 114: return ""image data unreasonably large"";
+  }
+  return ""unknown error code"";
+}
+
+extern const char* LODEPNG_VERSION_STRING;
+
+/*Hard upper limit on size of an uncompressed in-memory image buffer. The
+total memory consumption may be higher, e.g. during postProcessScanlines().*/
+#define LODEPNG_IMAGE_DATA_SIZE_MAX 0xffffffffU
+
+/*
+The following #defines are used to create code sections. They can be disabled
+to disable code sections, which can give faster compile time and smaller binary.
+"
+Null Pointer Dereference Caused Segmentation Fault in gpac/gpac,,CWE-476: NULL Pointer Dereference,"  fprintf(stderr, ""\t3GPP DIMS stream - size %d x %d - Profile %d - Level %d\n"", w, h, dims.profile, dims.level);
+  fprintf(stderr, ""\tpathComponents: %d - useFullRequestHost: %s\n"", dims.pathComponents, dims.fullRequestHost ? ""yes"" : ""no"");
+  fprintf(stderr, ""\tstream type: %s - redundant: %s\n"", dims.streamType ? ""primary"" : ""secondary"", (dims.containsRedundant==1) ? ""main"" : ((dims.containsRedundant==2) ? ""redundant"" : ""main+redundant"") );
+  if (dims.textEncoding && dims.textEncoding[0]) fprintf(stderr, ""\ttext encoding %s\n"", dims.textEncoding);
+  if (dims.contentEncoding && dims.contentEncoding[0]) fprintf(stderr, ""\tcontent encoding %s\n"", dims.contentEncoding);
+  if (dims.content_script_types && dims.content_script_types[0]) fprintf(stderr, ""\tscript languages %s\n"", dims.content_script_types);
+ } else if (mtype==GF_ISOM_MEDIA_HINT) {
+  u32 refTrack;
+  s32 refCount = gf_isom_get_reference_count(file, trackNum, GF_ISOM_REF_HINT);
+"
+BufferOverflow in arnoldaldrin/binaries,,CWE-121: Stack-based Buffer Overflow,"{
+ int n,j,i;
+ printf(""Enter the no. of processes:"");
+ printf(""enter no of proccess you want:"");
+    scanf(""%d"",&n);
+ int a[n],bt[n],tat[n],wt[n],ct[n],at[n];
+ float awt,wts=0;
+ printf(""enter burst time:"");
+"
+Floating point exception in mruby/mruby,,CWE-1077: Floating Point Comparison with Incorrect Operator,"  switch (mrb_type(mod)) {
+  case MRB_TT_INTEGER:
+    {
+      mrb_int m = mrb_integer(mod);
+      if (m == 0) mrb_int_zerodiv(mrb);
+      struct RBigint *b2 = bint_new(mrb);
+      struct RBigint *b3 = bint_new_int(mrb, m);
+      mpz_powm(mrb, &b2->mp, &b->mp, exp, &b3->mp);
+      return mrb_obj_value(b3);
+    }
+  case MRB_TT_BIGINT:
+    {
+      struct RBigint *b2 = bint_new(mrb);
+      struct RBigint *b3 = RBIGINT(mod);
+      if (uzero(&b3->mp)) mrb_int_zerodiv(mrb);
+      mpz_powm(mrb, &b2->mp, &b->mp, exp, &b3->mp);
+      return bint_norm(mrb, b3);
+    }
+"
+Global overflow in pppdump leads to RCE in ppp-project/ppp,,CWE-120: Classic Buffer Overflow,"       printf(""%s aborted packet:\n     "", dir);
+       q = ""    "";
+   }
+   if (pkt->cnt >= sizeof(pkt->buf)) {
+       printf(""%s over-long packet truncated:\n     "", dir);
+       q = ""    "";
+   }
+   nb = pkt->cnt;
+   p = pkt->buf;
+   pkt->cnt = 0;
+   c ^= 0x20;
+   pkt->esc = 0;
+      }
+      if (pkt->cnt < sizeof(pkt->buf))
+   pkt->buf[pkt->cnt++] = c;
+      break;
+  }
+     }
+"
+heap-buffer-overflow in dex_parse in virustotal/yara,,CWE-122: Heap-based Buffer Overflow,"  {
+#ifdef DEBUG_DEX_MODULE
+    printf(
+        ""[DEX]\tFIELD_NAME %s NAME_IDX 0x%llx\n"", field_name->c_string, name_idx);
+#endif
+
+    set_sized_string(
+  {
+#ifdef DEBUG_DEX_MODULE
+    printf(
+        ""[DEX]\tCLASS_NAME %s CLASS_IDX 0x%llx DESCRIPTOR_IDX 0x%llx\n"",
+        class_name->c_string,
+        class_idx,
+        descriptor_idx);
+    return 0;
+
+#ifdef DEBUG_DEX_MODULE
+  printf(""[DEX]\tNAME_IDX 0x%llx\n"", name_idx);
+#endif
+
+#ifdef DEBUG_DEX_MODULE
+  {
+#ifdef DEBUG_DEX_MODULE
+    printf(
+        ""[DEX]\tMETHOD_NAME %s NAME_IDX 0x%llx\n"",
+        method_name->c_string,
+        name_idx);
+#endif
+  {
+#ifdef DEBUG_DEX_MODULE
+    printf(
+        ""[DEX]\tCLASS_NAME %s CLASS_IDX 0x%llx DESCRIPTOR_IDX:0x%llx\n"",
+        class_name->c_string,
+        class_idx,
+        descriptor_idx);
+  {
+#ifdef DEBUG_DEX_MODULE
+    printf(
+        ""[DEX]\tPROTO_NAME %s CLASS_IDX 0x%llx DESCRIPTOR_IDX:0x%llx\n"",
+        proto_name->c_string,
+        class_idx,
+        descriptor_idx);
+#endif
+
+    if (struct_fits_in_dex(
+            dex, dex->data + encoded_method.code_off, code_item_t))
+    {
+      code_item_t* code_item =
+          (code_item_t*) (dex->data + encoded_method.code_off);
+
+    if (!fits_in_dex(
+            dex,
+            dex->data + yr_le32toh(string_id_item->string_data_offset) + 1,
+            value))
+      continue;
+
+    set_integer(value, dex->object, ""string_ids[%i].size"", i);
+
+    set_sized_string(
+        (const char*) (
+            dex->data + yr_le32toh(string_id_item->string_data_offset) + 1),
+        value,
+        dex->object,
+        ""string_ids[%i].value"",
+      map_item_t* map_item =
+          (map_item_t*) (dex->data + yr_le32toh(dex_header->map_offset) + sizeof(uint32_t) + i * sizeof(map_item_t));
+
+      if (!struct_fits_in_dex(dex, map_item, map_item_t))
+        return;
+
+      set_integer(
+          yr_le16toh(map_item->type),
+          dex->object,
+"
+NDIS Packet Buffer Overflow Due To Allocation/Copy Inconsistencies in luigirizzo/netmap,,CWE-122: Heap-based Buffer Overflow,"### Windows
+
+Netmap has been ported to Windows in summer 2015 by Alessio Faina as part of
+his Master thesis. You may take a look [here](WINDOWS/README.txt) for details,
+but please be aware that the port has been left behind for years, and is
+currently unmantained.
+
+## Applications
+
+**************************************************************
+DISCLAIMER: The Windows port of netmap is currently unmantained.  Not even
+compilation is guaranteed.  Moreover, it is know to contain security-critcal
+bugs.
+**************************************************************
+
+This directory contains the Windows version of netmap, developed by
+"
+buffer size confusion in vastrock-huang/minivpn,,CWE-120: Classic Buffer Overflow,
+Null pointer dereference at chafa-pixops.c:95 in hpjansson/chafa,,CWE-476: NULL Pointer Dereference,"        }
+
+        if (row_ofs [0] >= row_ofs [1])
+        {
+            /* Save the number of batches actually produced to use in
+             * post_func loop later. */
+            n_batches = i;
+            break;
+        }
+
+        batch = &batches [i++];
+        batch->first_row = row_ofs [0];
+"
+"classic overflow on the stack, with the ability to intercept control. in lurcher/unixodbc",,CWE-120: Classic Buffer Overflow,"#endif
+            if ( !(connection -> cl_handle = odbc_dlopen( name, &err )))
+            {
+                char txt[ 1024 ];
+
+#ifdef HAVE_SNPRINTF
+                snprintf( txt, sizeof( txt ), ""Can't open cursor lib '%s' : %s"", 
+                    name, err ? err : ""NULL ERROR RETURN"" );
+#else
+                sprintf( txt, ""Can't open cursor lib '%s' : %s"", 
+                    name, err ? err : ""NULL ERROR RETURN"" );
+#endif
+
+                dm_log_write( __FILE__,
+                        __LINE__,
+{
+    SQLCHAR dsn[ 1024 ], uid[ 1024 ], pwd[ 1024 ];
+    SQLTCHAR cstr[ 1024 ];
+    char zcstr[ 1024 * 2 ], tmp[ 1024 * 8 ];
+    int i;
+    size_t zclen;
+
+    if ( szDSN )
+    {
+        size_t DSNlen=strlen( szDSN );
+        for ( i = 0; i < DSNlen && i < sizeof( dsn ) - 1; i ++ )
+        {
+            dsn[ i ] = szDSN[ i ];
+        }
+    if ( szUID )
+    {
+        size_t UIDlen=strlen( szUID );
+        for ( i = 0; i < UIDlen && i < sizeof( uid ) - 1; i ++ )
+        {
+            uid[ i ] = szUID[ i ];
+        }
+    if ( szPWD )
+    {
+        size_t PWDlen=strlen( szPWD );
+        for ( i = 0; i < PWDlen && i < sizeof( pwd ) - 1; i ++ )
+        {
+            pwd[ i ] = szPWD[ i ];
+        }
+"
+Null pointer dereference in index.c in bfabiszewski/libmobi,,CWE-476: NULL Pointer Dereference,"2022-05-27: Fix potential null pointer dereference on corrupt input when inflections CNCX record is not initialized
+2022-05-23: Fix index entries count
+2022-05-23: Prevent leak of index entries on corrupt data
+2022-05-23: Add checks for fragments part in case of corrupt data
+ Matches are made agains reversed string and all its substrings
+ @param[in,out] infl_strings Array of returned strings
+ @param[in] root Root node of the tree
+ @param[in] string Index entry number
+ @return Number of returned strings
+ */
+size_t mobi_trie_get_inflgroups(char **infl_strings, MOBITrie * const root, const char *string) {
+    /* travers trie and get values for each substring */
+    if (root == NULL) {
+        return 0;
+    }
+    size_t count = 0;
+    size_t length = strlen(string);
+ @brief Insert inversed inlection string for given entry into trie structure
+ @param[in,out] root Root node of the tree, created if NULL
+ @param[in] indx MOBIIndx infl index records
+ @param[in] i Index entry number
+ @return MOBI_RET status code (on success MOBI_SUCCESS)
+ */
+MOBI_RET mobi_trie_insert_infl(MOBITrie **root, const MOBIIndx *indx, size_t i) {
+    if (indx->cncx_record == NULL) {
+        return MOBI_DATA_CORRUPT;
+    }
+    MOBIIndexEntry e = indx->entries[i];
+    char *inflected = e.label;
+    for (size_t j = 0; j < e.tags_count; j++) {
+"
+Stack buffer overflow in RTSP packet parsing in gpac/gpac,,CWE-121: Stack-based Buffer Overflow,"
+ //copy the body if any
+ if (!e && com->Content_Length) {
+  u32 rsp_size = sess->CurrentSize - sess->CurrentPos;
+  if (rsp_size < com->Content_Length) {
+   GF_LOG(GF_LOG_ERROR, GF_LOG_RTP, (""[RTSP] Invalid content length %u - Response was: \n%s\n"", com->Content_Length, sess->tcp_buffer+sess->CurrentPos));
+   e = GF_NON_COMPLIANT_BITSTREAM;
+   goto exit;
+  }
+  com->body = (char *) gf_malloc(sizeof(char) * (com->Content_Length));
+  memcpy(com->body, sess->tcp_buffer+sess->CurrentPos + BodyStart, com->Content_Length);
+ }
+
+void gf_rtsp_get_body_info(GF_RTSPSession *sess, u32 *body_start, u32 *body_size)
+{
+
+ s32 start;
+ char *buffer;
+ char *cl_str;
+
+ //if found add the 2 ""\r\n"" and parse it
+ *body_start = start + 4;
+ *body_size = 0;
+
+ //get the content length
+ cl_str = strstr(buffer, ""Content-Length: "");
+ if (!cl_str) cl_str = strstr(buffer, ""Content-length: "");
+
+ if (cl_str) {
+  char *sep;
+  cl_str += 16;
+  sep = strchr(cl_str, '\r');
+  if (sep) {
+   sep[0] = 0;
+   *body_size = atoi(cl_str);
+   sep[0] = '\r';
+  }
+
+
+
+
+ }
+}
+
+
+ //copy the body if any
+ if (!e && rsp->Content_Length) {
+  u32 rsp_size = sess->CurrentSize - sess->CurrentPos;
+  if (rsp_size < rsp->Content_Length) {
+   GF_LOG(GF_LOG_ERROR, GF_LOG_RTP, (""[RTSP] Invalid content length %u - Response was: \n%s\n"", rsp->Content_Length, sess->tcp_buffer+sess->CurrentPos));
+   e = GF_NON_COMPLIANT_BITSTREAM;
+   goto exit;
+  }
+  rsp->body = (char *)gf_malloc(sizeof(char) * (rsp->Content_Length));
+  memcpy(rsp->body, sess->tcp_buffer+sess->CurrentPos + BodyStart, rsp->Content_Length);
+ }
+"
+Denial of service in mruby/mruby,,CWE-400: Denial of Service,"mrb_value
+mrb_exc_inspect(mrb_state *mrb, mrb_value exc)
+{
+
+  mrb_value cname = mrb_mod_to_s(mrb, mrb_obj_value(mrb_obj_class(mrb, exc)));
+  mrb_value mesg = mrb_exc_mesg_get(mrb, mrb_exc_ptr(exc)); /* string or nil */
+  return (mrb_nil_p(mesg)||RSTRING_LEN(mesg)==0) ? cname : mrb_format(mrb, ""%v (%v)"", mesg, cname);
+}
+
+void mrb_keep_backtrace(mrb_state *mrb, mrb_value exc);
+"
+A null pointer reference in libmobi. in bfabiszewski/libmobi,,CWE-476: NULL Pointer Dereference,"2022-04-23: Fix issue with corrupt files with tagvalues_count = 0 that caused heap buffer over-read
+2022-04-23: Fix issues when mobi_buffer_getpointer returns null. With corrupt data this could lead to out-of-bounds read
+2022-04-13: Add packaging status [skip ci]
+2022-04-10: Make random generation return proper error codes
+    for (size_t j = 0; j < e.tags_count; j++) {
+        MOBIIndexTag t = e.tags[j];
+        if (t.tagid == INDX_TAGARR_INFL_PARTS_V1) {
+            for (size_t k = 0; k + 1 < t.tagvalues_count; k += 2) {
+                uint32_t len = t.tagvalues[k];
+                uint32_t offset = t.tagvalues[k + 1];
+                char *base = mobi_get_cncx_string_flat(indx->cncx_record, offset, len);
+"
+Untrusted Search Path in ventoy/ventoy,,CWE-426: Untrusted Search Path," return 0;
+}
+
+
+
+//
+//copy from Rufus
+//
+#include <delayimp.h>
+// For delay-loaded DLLs, use LOAD_LIBRARY_SEARCH_SYSTEM32 to avoid DLL search order hijacking.
+FARPROC WINAPI dllDelayLoadHook(unsigned dliNotify, PDelayLoadInfo pdli)
+{
+ if (dliNotify == dliNotePreLoadLibrary) {
+  // Windows 7 without KB2533623 does not support the LOAD_LIBRARY_SEARCH_SYSTEM32 flag.
+  // That is is OK, because the delay load handler will interrupt the NULL return value
+  // to mean that it should perform a normal LoadLibrary.
+  return (FARPROC)LoadLibraryExA(pdli->szDll, NULL, LOAD_LIBRARY_SEARCH_SYSTEM32);
+ }
+ return NULL;
+}
+
+#if defined(_MSC_VER)
+// By default the Windows SDK headers have a `const` while MinGW does not.
+const
+#endif
+PfnDliHook __pfnDliNotifyHook2 = dllDelayLoadHook;
+
+typedef BOOL(WINAPI* SetDefaultDllDirectories_t)(DWORD);
+static void DllProtect(void)
+{
+ SetDefaultDllDirectories_t pfSetDefaultDllDirectories = NULL;
+
+ // Disable loading system DLLs from the current directory (sideloading mitigation)
+ // PS: You know that official MSDN documentation for SetDllDirectory() that explicitly
+ // indicates that ""If the parameter is an empty string (""""), the call removes the current
+ // directory from the default DLL search order""? Yeah, that doesn't work. At all.
+ // Still, we invoke it, for platforms where the following call might actually work...
+ SetDllDirectoryA("""");
+
+ // For libraries on the KnownDLLs list, the system will always load them from System32.
+ // For other DLLs we link directly to, we can delay load the DLL and use a delay load
+ // hook to load them from System32. Note that, for this to work, something like:
+ // 'somelib.dll;%(DelayLoadDLLs)' must be added to the 'Delay Loaded Dlls' option of
+ // the linker properties in Visual Studio (which means this won't work with MinGW).
+ // For all other DLLs, use SetDefaultDllDirectories(LOAD_LIBRARY_SEARCH_SYSTEM32).
+ // Finally, we need to perform the whole gymkhana below, where we can't call on
+ // SetDefaultDllDirectories() directly, because Windows 7 doesn't have the API exposed.
+ // Also, no, Coverity, we never need to care about freeing kernel32 as a library.
+ // coverity[leaked_storage]
+
+ pfSetDefaultDllDirectories = (SetDefaultDllDirectories_t)
+  GetProcAddress(LoadLibraryW(L""kernel32.dll""), ""SetDefaultDllDirectories"");
+ if (pfSetDefaultDllDirectories != NULL)
+  pfSetDefaultDllDirectories(LOAD_LIBRARY_SEARCH_SYSTEM32);
+}
+
+
+int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, INT nCmdShow)
+{
+    int rc;
+
+    UNREFERENCED_PARAMETER(hPrevInstance);
+
+ DllProtect();
+
+    if (GetUserDefaultUILanguage() == 0x0804)
+    {
+        g_sysinfo.language = LANGUAGE_CN;
+    <ProjectGuid>{321D6EE2-2AB3-4103-9F05-EC4EC67A75E1}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>VentoyPlugson</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project=""$(VCTargetsPath)\Microsoft.Cpp.Default.props"" />
+  <PropertyGroup Condition=""'$(Configuration)|$(Platform)'=='Debug|Win32'"" Label=""Configuration"">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=""'$(Configuration)|$(Platform)'=='Release|Win32'"" Label=""Configuration"">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
+      <DelayLoadDLLs>gdi32.dll;winspool.dll;comdlg32.dll;advapi32.dll;shell32.dll;ole32.dll;oleaut32.dll;uuid.dll;odbc32.dll;odbccp32.dll</DelayLoadDLLs>
+    </Link>
+    <Manifest>
+      <AdditionalManifestFiles>$(ProjectDir)\Res\Plugson32.manifest %(AdditionalManifestFiles)</AdditionalManifestFiles>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
+      <DelayLoadDLLs>gdi32.dll;winspool.dll;comdlg32.dll;advapi32.dll;shell32.dll;ole32.dll;oleaut32.dll;uuid.dll;odbc32.dll;odbccp32.dll</DelayLoadDLLs>
+    </Link>
+    <Manifest>
+      <AdditionalManifestFiles>$(ProjectDir)\Res\Plugson32.manifest %(AdditionalManifestFiles)</AdditionalManifestFiles>
+  <ItemGroup>
+    <ResourceCompile Include=""VentoyPlugson.rc"" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include=""Res\plugson.ico"" />
+  </ItemGroup>
+  <Import Project=""$(VCTargetsPath)\Microsoft.Cpp.targets"" />
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include=""Res\plugson.ico"">
+      <Filter>资源文件</Filter>
+    </Image>
+  </ItemGroup>
+    return argc;
+}
+
+
+//
+//copy from Rufus
+//
+#include <delayimp.h>
+// For delay-loaded DLLs, use LOAD_LIBRARY_SEARCH_SYSTEM32 to avoid DLL search order hijacking.
+FARPROC WINAPI dllDelayLoadHook(unsigned dliNotify, PDelayLoadInfo pdli)
+{
+    if (dliNotify == dliNotePreLoadLibrary) {
+        // Windows 7 without KB2533623 does not support the LOAD_LIBRARY_SEARCH_SYSTEM32 flag.
+        // That is is OK, because the delay load handler will interrupt the NULL return value
+        // to mean that it should perform a normal LoadLibrary.
+        return (FARPROC)LoadLibraryExA(pdli->szDll, NULL, LOAD_LIBRARY_SEARCH_SYSTEM32);
+    }
+    return NULL;
+}
+
+#if defined(_MSC_VER)
+// By default the Windows SDK headers have a `const` while MinGW does not.
+const
+#endif
+PfnDliHook __pfnDliNotifyHook2 = dllDelayLoadHook;
+
+typedef BOOL(WINAPI *SetDefaultDllDirectories_t)(DWORD);
+static void DllProtect(void)
+{
+    SetDefaultDllDirectories_t pfSetDefaultDllDirectories = NULL;
+
+    // Disable loading system DLLs from the current directory (sideloading mitigation)
+    // PS: You know that official MSDN documentation for SetDllDirectory() that explicitly
+    // indicates that ""If the parameter is an empty string (""""), the call removes the current
+    // directory from the default DLL search order""? Yeah, that doesn't work. At all.
+    // Still, we invoke it, for platforms where the following call might actually work...
+    SetDllDirectoryA("""");
+
+    // For libraries on the KnownDLLs list, the system will always load them from System32.
+    // For other DLLs we link directly to, we can delay load the DLL and use a delay load
+    // hook to load them from System32. Note that, for this to work, something like:
+    // 'somelib.dll;%(DelayLoadDLLs)' must be added to the 'Delay Loaded Dlls' option of
+    // the linker properties in Visual Studio (which means this won't work with MinGW).
+    // For all other DLLs, use SetDefaultDllDirectories(LOAD_LIBRARY_SEARCH_SYSTEM32).
+    // Finally, we need to perform the whole gymkhana below, where we can't call on
+    // SetDefaultDllDirectories() directly, because Windows 7 doesn't have the API exposed.
+    // Also, no, Coverity, we never need to care about freeing kernel32 as a library.
+    // coverity[leaked_storage]
+
+    pfSetDefaultDllDirectories = (SetDefaultDllDirectories_t)
+        GetProcAddress(LoadLibraryW(L""kernel32.dll""), ""SetDefaultDllDirectories"");
+    if (pfSetDefaultDllDirectories != NULL)
+        pfSetDefaultDllDirectories(LOAD_LIBRARY_SEARCH_SYSTEM32);
+}
+
+int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, INT nCmdShow)
+{
+    DWORD dwAttrib;
+ HANDLE hMutex;
+
+    UNREFERENCED_PARAMETER(hPrevInstance);
+
+    DllProtect();
+
+    if (GetUserDefaultUILanguage() == 0x0804)
+    {
+        g_msg_lang = g_msg_cn;
+    <ProjectGuid>{9987D9FE-1A40-4C5F-835C-D66B0FEADA26}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>VentoyVlnk</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project=""$(VCTargetsPath)\Microsoft.Cpp.Default.props"" />
+  <PropertyGroup Condition=""'$(Configuration)|$(Platform)'=='Debug|Win32'"" Label=""Configuration"">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=""'$(Configuration)|$(Platform)'=='Release|Win32'"" Label=""Configuration"">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
+      <DelayLoadDLLs>gdi32.dll;winspool.dll;comdlg32.dll;advapi32.dll;shell32.dll;ole32.dll;oleaut32.dll;uuid.dll;odbc32.dll;odbccp32.dll</DelayLoadDLLs>
+    </Link>
+    <Manifest>
+      <AdditionalManifestFiles>$(ProjectDir)\Res\Vlnk32.manifest %(AdditionalManifestFiles)</AdditionalManifestFiles>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
+      <DelayLoadDLLs>gdi32.dll;winspool.dll;comdlg32.dll;advapi32.dll;shell32.dll;ole32.dll;oleaut32.dll;uuid.dll;odbc32.dll;odbccp32.dll</DelayLoadDLLs>
+    </Link>
+    <Manifest>
+      <AdditionalManifestFiles>$(ProjectDir)\Res\Vlnk32.manifest %(AdditionalManifestFiles)</AdditionalManifestFiles>
+"
+Controlled heap buffer overflow in SDP packet parsing in gpac/gpac,,CWE-122: Heap-based Buffer Overflow,"    if (pos <= 0) break;
+    timing->OffsetFromStart[timing->NbRepeatOffsets] = SDP_MakeSeconds(comp);
+    timing->NbRepeatOffsets += 1;
+    if (timing->NbRepeatOffsets == GF_SDP_MAX_TIMEOFFSET) break;
+   }
+   break;
+  case 'z':
+    pos = gf_token_get(LineBuf, pos, "" \t\r\n"", comp, 3000);
+    timing->AdjustmentOffset[timing->NbZoneOffsets] = SDP_MakeSeconds(comp);
+    timing->NbZoneOffsets += 1;
+    if (timing->NbZoneOffsets == GF_SDP_MAX_TIMEOFFSET) break;
+   }
+   break;
+  case 'k':
+"
+Use After Free in new_object in libredwg/libredwg,,CWE-416: Use After Free,
+Stack buffer overflow in XML entity parsing in gpac/gpac,,CWE-121: Stack-based Buffer Overflow,"
+static void xml_sax_parse_entity(GF_SAXParser *parser)
+{
+ char szC[2];
+ char *ent_name=NULL;
+ u32 i = 0;
+ XML_Entity *ent = (XML_Entity *)gf_list_last(parser->entities);
+ char *skip_chars = "" \t\n\r"";
+ i=0;
+ if (ent && ent->value) ent = NULL;
+ if (ent) skip_chars = NULL;
+ szC[1]=0;
+
+ while (parser->current_pos+i < parser->line_size) {
+  u8 c = parser->buffer[parser->current_pos+i];
+  if (!ent && (c=='%')) {
+   parser->current_pos+=i+1;
+   parser->sax_state = SAX_STATE_SKIP_DOCTYPE;
+   if (ent_name) gf_free(ent_name);
+   return;
+  }
+  else if (!ent && ((c=='\""') || (c=='\'')) ) {
+
+   GF_SAFEALLOC(ent, XML_Entity);
+   if (!ent) {
+    parser->sax_state = SAX_STATE_ALLOC_ERROR;
+    if (ent_name) gf_free(ent_name);
+    return;
+   }
+   if (!ent_name) gf_dynstrcat(&ent_name, """", NULL);
+
+   ent->name = ent_name;
+   ent_name=NULL;
+   ent->namelen = (u32) strlen(ent->name);
+   ent->sep = c;
+   parser->current_pos += 1+i;
+   gf_list_add(parser->entities, ent);
+   skip_chars = NULL;
+  } else if (ent && c==ent->sep) {
+   if (ent_name) gf_free(ent_name);
+   xml_sax_store_text(parser, i);
+
+   ent->value = xml_get_current_text(parser);
+   parser->sax_state = SAX_STATE_SKIP_DOCTYPE;
+   return;
+  } else if (!ent) {
+   szC[0] = c;
+   gf_dynstrcat(&ent_name, szC, NULL);
+   i++;
+  } else {
+   i++;
+  }
+ }
+ if (ent_name) gf_free(ent_name);
+ xml_sax_store_text(parser, i);
+}
+
+"
+Untrusted Pointer Dereference in gpac/gpac,,CWE-822: Untrusted Pointer Dereference," pps->entropy_coding_sync_enabled_flag = gf_bs_read_int_log(bs, 1, ""entropy_coding_sync_enabled_flag"");
+ if (pps->tiles_enabled_flag) {
+  pps->num_tile_columns = 1 + gf_bs_read_ue_log(bs, ""num_tile_columns_minus1"");
+  if (pps->num_tile_columns > 22) {
+   GF_LOG(GF_LOG_ERROR, GF_LOG_CODING, (""[HEVC] Invalid num_tile_columns %u\n"", pps->num_tile_columns));
+   return -1;
+  }
+  pps->num_tile_rows = 1 + gf_bs_read_ue_log(bs, ""num_tile_rows_minus1"");
+  if (pps->num_tile_rows > 20) {
+   GF_LOG(GF_LOG_ERROR, GF_LOG_CODING, (""[HEVC] Invalid num_tile_rows %u\n"", pps->num_tile_rows));
+   return -1;
+  }
+  pps->uniform_spacing_flag = gf_bs_read_int_log(bs, 1, ""uniform_spacing_flag"");
+  if (!pps->uniform_spacing_flag) {
+   for (i = 0; i < pps->num_tile_columns - 1; i++) {
+"
+Classic Buffer Overflow in john in openwall/john,,CWE-120: Classic Buffer Overflow," unsigned char masterkey[CTLEN];
+ unsigned int plaintextlen;
+ unsigned int ivlen;
+ unsigned char iv[IVLEN];
+ unsigned int cryptextlen;
+ unsigned char cryptext[CTLEN];
+ unsigned int expectedhmaclen;
+ if (!isdec(p))
+  goto err;
+ len = atoi(p);
+ if (len > SALTLEN)
+  goto err;
+ if ((p = strtokm(NULL, ""$"")) == NULL) /* salt */
+  goto err;
+ if (hexlenl(p, &extra)/2 != len || extra)
+ if (!isdec(p))
+  goto err;
+ len = atoi(p);
+ if (len > CTLEN)
+  goto err;
+ if ((p = strtokm(NULL, ""$"")) == NULL) /* masterkey */
+  goto err;
+ if (hexlenl(p, &extra)/2 != len || extra)
+"
+NULL Pointer Dereference in gpac/gpac,,CWE-476: NULL Pointer Dereference,"  ptr = (GF_UnknownBox*)gf_list_get(map->boxes, UserDataIndex-1);
+
+  if (ptr->type == GF_ISOM_BOX_TYPE_UNKNOWN) {
+   if (!ptr->dataSize) {
+    *userData = NULL;
+    *userDataSize = 0;
+    return GF_OK;
+   }
+   *userData = (char *)gf_malloc(sizeof(char)*ptr->dataSize);
+   if (!*userData) return GF_OUT_OF_MEM;
+   memcpy(*userData, ptr->data, sizeof(char)*ptr->dataSize);
+   *userDataSize = ptr->dataSize;
+   return GF_OK;
+  } else if (ptr->type == GF_ISOM_BOX_TYPE_UUID) {
+   GF_UnknownUUIDBox *p_uuid = (GF_UnknownUUIDBox *)ptr;
+   if (!p_uuid->dataSize) {
+    *userData = NULL;
+    *userDataSize = 0;
+    return GF_OK;
+   }
+   *userData = (char *)gf_malloc(sizeof(char)*p_uuid->dataSize);
+   if (!*userData) return GF_OUT_OF_MEM;
+   memcpy(*userData, p_uuid->data, sizeof(char)*p_uuid->dataSize);
+"
+Heap-based Buffer Overflow in gpac/gpac,,CWE-122: Heap-based Buffer Overflow,"typedef struct
+{
+ u16 avg_bit_rate, max_bit_rate, avg_pic_rate;
+ u8 constant_pic_rate_idc;
+} HEVC_RateInfo;
+
+
+ HEVC_ProfileTierLevel ptl;
+
+ HEVC_SublayerPTL sub_ptl[8];
+ //this is not parsed yet (in VPS VUI)
+ HEVC_RateInfo rates[8];
+
+
+
+  if (!i) {
+   hvcc->avgFrameRate = lvcc->avgFrameRate = vps->rates[0].avg_pic_rate;
+   hvcc->constantFrameRate = lvcc->constantFrameRate = vps->rates[0].constant_pic_rate_idc;
+   hvcc->numTemporalLayers = lvcc->numTemporalLayers = vps->max_sub_layers;
+   hvcc->temporalIdNested = lvcc->temporalIdNested = vps->temporal_id_nesting;
+  }
+
+  if (!i) {
+   cfg->avgFrameRate = vps->rates[0].avg_pic_rate;
+   cfg->constantFrameRate = vps->rates[0].constant_pic_rate_idc;
+   cfg->numTemporalLayers = vps->max_sub_layers;
+  }
+  if (!ctx->analyze)
+  sps->update_rep_format_flag = gf_bs_read_int_log(bs, 1, ""update_rep_format_flag"");
+  if (sps->update_rep_format_flag) {
+   sps->rep_format_idx = gf_bs_read_int_log(bs, 8, ""rep_format_idx"");
+   if (sps->rep_format_idx>15) {
+    return -1;
+   }
+  } else {
+   sps->rep_format_idx = vps->rep_format_idx[layer_id];
+  }
+  sps->width = vps->rep_formats[sps->rep_format_idx].pic_width_luma_samples;
+"
+Heap-based Buffer Overflow in john in openwall/john,,CWE-122: Heap-based Buffer Overflow,"  goto err;
+ if ((p = strtokm(NULL, ""$"")) == NULL)   // salt
+  goto err;
+ if (hexlenl(p, &extra) != SALTLEN * 2 || extra)
+  goto err;
+ if ((p = strtokm(NULL, ""$"")) == NULL)   // iterations
+  goto err;
+ if (!isdec(p))
+  goto err;
+ len = atoi(p);
+ if (len > CTLEN)
+  goto err;
+ if ((p = strtokm(NULL, ""*"")) == NULL)   // ciphertext
+  goto err;
+ if (hexlenl(p, &extra) != len*2 || extra)
+"
+Generation of Error Message Containing Sensitive Information in luigirizzo/netmap,,CWE-209: Generation of Error Message Containing Sensitive Information,"void
+generic_timer_handler(struct hrtimer *t)
+{
+ DbgPrint(""unimplemented generic_timer_handler\n"", t);
+#if 0
+ struct nm_generic_mit *mit =
+  container_of(t, struct nm_generic_mit, mit_timer);
+void nm_os_mitigation_init(struct nm_generic_mit *mit, int idx,
+struct netmap_adapter *na)
+{
+ DbgPrint(""unimplemented generic_timer_handler\n"");
+ //KeInitializeDpc(&mit->mit_timer.deferred_proc, &generic_timer_handler, NULL);
+ //KeInitializeTimer(&mit->mit_timer.timer);
+ //hrtimer_init(&mit->mit_timer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
+
+void nm_os_mitigation_start(struct nm_generic_mit *mit)
+{
+ DbgPrint(""unimplemented generic_timer_handler\n"");
+ //LARGE_INTEGER test;
+ //KeSetTimerEx(&mit->mit_timer.timer, test, 1000, &mit->mit_timer.deferred_proc);
+ //mit->mit_timer.active = TRUE;
+
+void nm_os_mitigation_restart(struct nm_generic_mit *mit)
+{
+ DbgPrint(""unimplemented nm_os_mitigation_start\n"");
+ //hrtimer_forward_now(&mit->mit_timer, ktime_set(0, netmap_generic_mit));
+}
+
+int nm_os_mitigation_active(struct nm_generic_mit *mit)
+{
+ DbgPrint(""unimplemented nm_os_mitigation_active\n"");
+ return 0;
+ //return mit->mit_timer.active;
+ //return hrtimer_active(&mit->mit_timer);
+"
+NULL Pointer Dereference in gpac/gpac,,CWE-476: NULL Pointer Dereference," for (i=0; i<ptr->quality_entry_count; i++) {
+  int j=0;
+  u32 tmp_strsize=(u32)ptr->size;
+  if (!tmp_strsize) return GF_ISOM_INVALID_FILE;
+  char *tmp_str = (char*) gf_malloc(tmp_strsize+1);
+  if (!tmp_str) return GF_OUT_OF_MEM;
+  tmp_str[tmp_strsize]=0;
+  while (tmp_strsize) {
+   tmp_str[j] = gf_bs_read_u8(bs);
+   ISOM_DECREASE_SIZE(ptr, 1)
+   tmp_strsize--;
+   if (!tmp_str[j])
+    break;
+   j++;
+  }
+
+  gf_list_insert(ptr->quality_segment_url_modifiers, tmp_str, i);
+ }
+
+ if (ptr->size < ptr->quality_entry_count)
+  return GF_ISOM_INVALID_FILE;
+
+
+ for (i=0; i<ptr->quality_entry_count; i++) {
+  int j=0;
+  u32 tmp_strsize = (u32) ptr->size;
+  if (!tmp_strsize) return GF_ISOM_INVALID_FILE;
+  char *tmp_str = (char*) gf_malloc(tmp_strsize+1);
+  if (!tmp_str) return GF_OUT_OF_MEM;
+  tmp_str[tmp_strsize]=0;
+  while (tmp_strsize) {
+   tmp_str[j] = gf_bs_read_u8(bs);
+   ISOM_DECREASE_SIZE(ptr, 1)
+   tmp_strsize--;
+   if (!tmp_str[j])
+    break;
+   j++;
+  }
+
+  gf_list_insert(ptr->quality_segment_url_modifiers, tmp_str, i);
+ }
+
+ ISOM_DECREASE_SIZE(ptr, 4)
+ ptr->fragment_run_entry_count = gf_bs_read_u32(bs);
+ if (ptr->size / 16 < ptr->fragment_run_entry_count)
+  return GF_ISOM_INVALID_FILE;
+"
+Heap-based Buffer Overflow in gpac/gpac,,CWE-122: Heap-based Buffer Overflow," */
+u64 gf_bs_get_cookie(GF_BitStream *bs);
+
+
+/*!
+\brief Marks overflow access
+
+Marks the bitstream as overflown (reading outside of buffer range). Marking is done automatically when reading but can be forced using this function.
+
+\param bs the target bitstream
+\param reset if GF_TRUE, reset overflown state, otherwise mark as overflown
+ */
+void gf_bs_mark_overflow(GF_BitStream *bs, Bool reset);
+
+/*!
+\brief Gets overflow state
+
+Gets overflow state of the bitstream
+\param bs the target bitstream
+\return 2 if an overflow was marked by user using \ref gf_bs_mark_overflow, 1 if an overflow occured, 0 otherwise
+ */
+u32 gf_bs_is_overflow(GF_BitStream *bs);
+
+/*! @} */
+
+#ifdef __cplusplus
+ Bool mem_mode;
+ /*bitstream object for mem mode - this bitstream is NOT destroyed by gf_av1_reset_state(state, GF_TRUE) */
+ GF_BitStream *bs;
+ Bool unframed;
+ u8 *frame_obus;
+ u32 frame_obus_alloc;
+
+{
+ u32 size, pck_size, i, count, tot_size=0, nb_done=0;
+ u64 min_dts = GF_FILTER_NO_TS;
+ u32 min_timescale, min_nal_size;
+ GF_Err process_error = GF_OK;
+ Bool has_svc_prefix = GF_FALSE;
+
+ min_nal_size = codec_type ? 2 : 1;
+
+ count = gf_list_count(pctx->ipids);
+ for (i=0; i<count; i++) {
+  u64 ts;
+    e = GF_NON_COMPLIANT_BITSTREAM;
+    break;
+   }
+   if (nal_size < min_nal_size) {
+    GF_LOG(GF_LOG_ERROR, GF_LOG_CODING, (""[BSAgg] Invalid NAL size %d but mn size %d\n"", nal_size, min_nal_size));
+    e = GF_NON_COMPLIANT_BITSTREAM;
+    break;
+   }
+
+   //AVC
+   if (codec_type==0) {
+    nal_type = data[size] & 0x1F;
+    if ((nal_type == GF_AVC_NALU_SVC_PREFIX_NALU) || (nal_type==GF_AVC_NALU_SVC_SLICE)) {
+     if (nal_size < 4) {
+      GF_LOG(GF_LOG_ERROR, GF_LOG_CODING, (""[BSAgg] Invalid NAL size %d but mn size 4\n"", nal_size));
+      e = GF_NON_COMPLIANT_BITSTREAM;
+      break;
+     }
+     has_svc_prefix = GF_TRUE;
+     //quick parse svc nal header (right after 1-byte nal header)
+     //u32 prio_id = (data[size+1]) & 0x3F;
+
+static GF_Err nalu_split_packet(BSSplitCtx *ctx, BSSplitIn *pctx, GF_FilterPacket *pck, u32 codec_type)
+{
+ u32 size, pck_size, min_nal_size;
+ GF_Err e;
+ u64 pck_ts;
+ Bool has_svc_prefix = GF_FALSE;
+ if (!pctx->first_ts_plus_one) {
+  pctx->first_ts_plus_one = pck_ts+1;
+ }
+ min_nal_size = codec_type ? 2 : 1;
+
+ size=0;
+ while (size<pck_size) {
+   e = GF_NON_COMPLIANT_BITSTREAM;
+   break;
+  }
+  if (nal_size < min_nal_size) {
+   GF_LOG(GF_LOG_ERROR, GF_LOG_CODING, (""[BSSplit] Invalid NAL size %d but mn size %d\n"", nal_size, min_nal_size));
+   e = GF_NON_COMPLIANT_BITSTREAM;
+   break;
+  }
+
+  //AVC
+  if (codec_type==0) {
+ if (hevc) {
+#ifndef GPAC_DISABLE_HEVC
+
+  if (ptr_size<=1) {
+   gf_fprintf(dump, ""error=\""invalid nal size 1\""/>\n"");
+   return;
+  }
+ if (vvc) {
+  u8 lid, tid;
+
+  if (ptr_size<=1) {
+   gf_fprintf(dump, ""error=\""invalid nal size 1\""/>\n"");
+   return;
+  }
+
+  if (full_bs_dump) {
+   vvc->parse_mode = 2;
+   if (pctx) {
+ }
+
+ //avc
+ if (!ptr_size) {
+  gf_fprintf(dump, ""error=\""invalid nal size 1\""/>\n"");
+  return;
+ }
+ type = ptr[0] & 0x1F;
+ nal_ref_idc = ptr[0] & 0x60;
+ nal_ref_idc>>=5;
+ u8 nal_unit_type, temporal_id, layer_id;
+ *skip_nal = GF_FALSE;
+
+ if (size<2) return -1;
+
+ gf_bs_reassign_buffer(ctx->bs_r, data, size);
+ res = gf_hevc_parse_nalu_bs(ctx->bs_r, ctx->hevc_state, &nal_unit_type, &temporal_id, &layer_id);
+ ctx->nb_nalus++;
+ u8 nal_unit_type, temporal_id, layer_id;
+ *skip_nal = GF_FALSE;
+
+ if (size<2) return -1;
+ gf_bs_reassign_buffer(ctx->bs_r, data, size);
+ res = gf_vvc_parse_nalu_bs(ctx->bs_r, ctx->vvc_state, &nal_unit_type, &temporal_id, &layer_id);
+ ctx->nb_nalus++;
+ s32 ps_idx = 0;
+ s32 res = 0;
+
+ if (!size) return -1;
+ gf_bs_reassign_buffer(ctx->bs_r, data, size);
+ *skip_nal = GF_FALSE;
+ res = gf_avc_parse_nalu(ctx->bs_r, ctx->avc_state);
+ else
+  is_avcc = GF_FALSE;
+
+ //we don't use gf_odf_avc_cfg_read to deal with missing rext profile signaling on many files
+ ptr->config->configurationVersion = gf_bs_read_u8(bs);
+ ptr->config->AVCProfileIndication = gf_bs_read_u8(bs);
+ ptr->config->profile_compatibility = gf_bs_read_u8(bs);
+   }
+  }
+#endif
+  GF_LOG(GF_LOG_WARNING, GF_LOG_CODING, (""[isom/avcc] Missing REXT profile signaling, patching.\n""));
+  return GF_OK;
+ }
+ ISOM_DECREASE_SIZE(ptr, 4)
+"
+NULL Pointer Dereference in gpac/gpac,,CWE-476: NULL Pointer Dereference,"     ch->sample_num--;
+   } else {
+    if (ch->to_init && ch->sample_num) {
+     GF_LOG(GF_LOG_ERROR, GF_LOG_CONTAINER, (""[IsoMedia] Failed to fetch initial sample %d for track %d\n"", ch->sample_num, ch->track));
+     ch->last_state = GF_ISOM_INVALID_FILE;
+    } else {
+     GF_LOG(GF_LOG_ERROR, GF_LOG_CONTAINER, (""[IsoMedia] File truncated, aborting read for track %d\n"", ch->track));
+     ch->last_state = GF_EOS;
+    }
+   }
+  } else {
+   e = gf_isom_last_error(ch->owner->mov);
+   GF_LOG((e==GF_ISOM_INCOMPLETE_FILE) ? GF_LOG_DEBUG : GF_LOG_WARNING, GF_LOG_DASH, (""[IsoMedia] Track #%d fail to fetch sample %d / %d: %s\n"", ch->track, ch->sample_num, gf_isom_get_sample_count(ch->owner->mov, ch->track), gf_error_to_string(e) ));
+
+   if ((e<GF_OK) && (e!=GF_ISOM_INCOMPLETE_FILE)) {
+    ch->last_state = GF_EOS;
+   }
+  }
+  return;
+ }
+   GF_ISOSample *samp;
+   if (safs[i].last_sample==safs[i].nb_samp) continue;
+   samp = gf_isom_get_sample(dumper->file, safs[i].track_num, safs[i].last_sample + 1, &di);
+   if (!samp) {
+    gf_saf_mux_del(mux);
+    return gf_isom_last_error(dumper->file);
+   }
+
+   gf_saf_mux_add_au(mux, safs[i].stream_id, (u32) (samp->DTS+samp->CTS_Offset), samp->data, samp->dataLength, (samp->IsRAP==RAP) ? 1 : 0);
+   /*data is kept by muxer!!*/
+   gf_free(samp);
+  }
+
+  if (!sdump->XMLDump) gf_fprintf(sdump->trace, ""["");
+  if (mffield) {
+   for (i=0; i<mffield->count; i++) {
+    if (i) gf_fprintf(sdump->trace, "" "");
+    gf_sg_vrml_mf_get_item(field.far_ptr, field.fieldType, &slot_ptr, i);
+    gf_dump_vrml_sffield(sdump, sf_type, slot_ptr, 1, node);
+   }
+  }
+  if (!sdump->XMLDump) gf_fprintf(sdump->trace, ""]"");
+
+    } else {
+     gf_fprintf(sdump->trace, "" %s=\"""", GetXMTFieldTypeValueName(field.fieldType));
+    }
+    if (mffield) {
+     for (i=0; i<mffield->count; i++) {
+      if (i) gf_fprintf(sdump->trace, "" "");
+      if (field.fieldType != GF_SG_VRML_MFNODE) {
+       gf_sg_vrml_mf_get_item(field.far_ptr, field.fieldType, &slot_ptr, i);
+       gf_dump_vrml_sffield(sdump, sf_type, slot_ptr, (mffield->count>1) ? 1 : 0, node);
+      }
+     }
+    }
+    gf_fprintf(sdump->trace, ""\""/>\n"");
+"
+Heap-based Buffer Overflow in gpac/gpac,,CWE-122: Heap-based Buffer Overflow," }
+ if (ptr->size) {
+  u32 bytesToRead = (u32) ptr->size;
+  ptr->notice = (char*)gf_malloc((bytesToRead+1) * sizeof(char));
+  if (ptr->notice == NULL) return GF_OUT_OF_MEM;
+  gf_bs_read_data(bs, ptr->notice, bytesToRead);
+  ptr->notice[bytesToRead] = 0;
+ }
+ return GF_OK;
+}
+"
+Use After Free in gpac/gpac,,CWE-416: Use After Free,"/*!
+\brief returns a UTF8 string from a string started with BOM
+
+Returns UTF8 from data
+\param data the string or wide-char string
+\param size of the data buffer
+  size of the data buffer
+\param out_ptr set to an allocated buffer if needed for conversion, shall be destroyed by caller. Must not be NULL
+\param result set to resulting UTF8 string. Must not be NULL
+\return error if any: GF_IO_ERR if UTF decode error or GF_BAD_PARAM
+ */
+GF_Err gf_utf_get_utf8_string_from_bom(const u8 *data, u32 size, char **out_ptr, char **result);
+
+/*!
+\brief Checks validity of a UTF8 string
+{
+ const char *mime_type = NULL;
+ char *dst = NULL;
+ GF_Err e;
+ char *res=NULL;
+
+ /* check gzip magic header */
+ if ((size>2) && (probe_data[0] == 0x1f) && (probe_data[1] == 0x8b)) {
+  *score = GF_FPROBE_EXT_MATCH;
+  return ""btz|bt.gz|xmt.gz|xmtz|wrl.gz|x3dv.gz|x3dvz|x3d.gz|x3dz"";
+ }
+
+ e = gf_utf_get_utf8_string_from_bom(probe_data, size, &dst, &res);
+ if (e) return NULL;
+
+ //strip all spaces and \r\n
+ while (probe_data[0] && strchr(""\n\r\t "", (char) probe_data[0]))
+static const char *txtin_probe_data(const u8 *data, u32 data_size, GF_FilterProbeScore *score)
+{
+ char *dst = NULL;
+ char *res=NULL;
+ GF_Err e = gf_utf_get_utf8_string_from_bom((char *)data, data_size, &dst, &res);
+ if (e) return NULL;
+
+
+#define PROBE_OK(_score, _mime) \
+  *score = _score;\
+  if (dst) gf_free(dst);\
+
+
+GF_EXPORT
+GF_Err gf_utf_get_utf8_string_from_bom(const u8 *data, u32 size, char **out_ptr, char **result)
+{
+ u32 unicode_type = 0;
+ if (!out_ptr || !result || !data) return GF_BAD_PARAM;
+ *out_ptr = NULL;
+ *result = (char *) data;
+
+ if (size>=5) {
+  /*0: no unicode, 1: UTF-16BE, 2: UTF-16LE*/
+  if ((data[0]==0xFF) && (data[1]==0xFE)) {
+   if (!data[2] && !data[3]) {
+    return GF_OK;
+   } else {
+    unicode_type = 2;
+   }
+  } else if ((data[0]==0xFE) && (data[1]==0xFF)) {
+   if (!data[2] && !data[3]) {
+    return GF_OK;
+   } else {
+    unicode_type = 1;
+   }
+  } else if ((data[0]==0xEF) && (data[1]==0xBB) && (data[2]==0xBF)) {
+   *result = (char *) (data+4);
+   return GF_OK;
+  }
+ }
+
+ if (!unicode_type) {
+  *result = (char *) data;
+  return GF_OK;
+ }
+
+ if (size%2) size--;
+ u16 *str_wc = gf_malloc(size+2);
+ if (!str_wc) return GF_OUT_OF_MEM;
+ u16 *srcwc;
+ char *dst = gf_malloc(size+2);
+ if (!dst) {
+  gf_free(str_wc);
+  return GF_OUT_OF_MEM;
+ }
+ *out_ptr = dst;
+ u32 i;
+ for (i=0; i<size; i+=2) {
+ }
+ str_wc[i/2] = 0;
+ srcwc = str_wc;
+ u32 res = gf_utf8_wcstombs(dst, size, (const unsigned short **) &srcwc);
+ gf_free(str_wc);
+ if (res==GF_UTF8_FAIL) {
+  gf_free(dst);
+  *out_ptr = NULL;
+  return GF_IO_ERR;
+ }
+ *result = dst;
+ return GF_OK;
+}
+
+
+"
+Classic Buffer Overflow in gpac/gpac,,CWE-120: Classic Buffer Overflow,"  }
+ }
+ /*try with default*/
+
+ if (gf_sg_mpeg4_node_get_field_count(node, IndexMode)>=inField)
+  return GF_NON_COMPLIANT_BITSTREAM;
+
+ return gf_sg_mpeg4_node_get_field_index(node, inField, IndexMode, allField);
+}
+
+"
+Use After Free in gpac/gpac,,CWE-416: Use After Free," if(NbComp == 2) dir -= 2 * gf_bs_read_int(bs, 1);
+
+ orient = gf_bs_read_int(bs, 2);
+ if ((orient==3) && (NbComp==2)) return GF_NON_COMPLIANT_BITSTREAM;
+
+ for(i=0; i<NbComp; i++) {
+  value = gf_bs_read_int(bs, NbBits) - (1 << (NbBits-1) );
+//parses a Normal vec
+GF_Err Q_DecNormal(GF_BifsDecoder *codec, GF_BitStream *bs, u32 NbBits, void *field_ptr)
+{
+ Fixed comp[4];
+ SFVec3f v;
+ GF_Err e;
+ e = Q_DecCoordOnUnitSphere(codec, bs, NbBits, 2, comp);
+"
+Stack-based Buffer Overflow in gpac/gpac,,CWE-121: Stack-based Buffer Overflow," GF_Err e;
+ CommandBufferItem *cbi;
+ GF_SceneGraph *prev_root = codec->current_graph;
+ M_QuantizationParameter *prev_qp = codec->ActiveQP;
+ u32 prev_qp_count = gf_list_count(codec->QPs);
+ u32 NbPass = gf_list_count(codec->command_buffers);
+
+
+ codec->ActiveQP = NULL;
+ GF_List *nextPass = gf_list_new();
+ while (NbPass) {
+  while (gf_list_count(codec->command_buffers)) {
+  }
+  NbPass --;
+  if (NbPass > gf_list_count(codec->command_buffers)) NbPass = gf_list_count(codec->command_buffers);
+
+  //restore QP state
+  while (gf_list_count(codec->QPs) > prev_qp_count) {
+   gf_list_rem(codec->QPs, 0); //QPs are inserted at head of list
+  }
+  codec->ActiveQP = NULL;
+  codec->LastError = GF_OK;
+ }
+ gf_list_del(nextPass);
+ codec->current_graph = prev_root;
+ codec->ActiveQP = prev_qp;
+ return GF_OK;
+}
+
+"
+Heap-based Buffer Overflow in gpac/gpac,,CWE-122: Heap-based Buffer Overflow," GF_Err e;
+ CommandBufferItem *cbi;
+ GF_SceneGraph *prev_root = codec->current_graph;
+ M_QuantizationParameter *prev_qp = codec->ActiveQP;
+ u32 prev_qp_count = gf_list_count(codec->QPs);
+ u32 NbPass = gf_list_count(codec->command_buffers);
+
+
+ codec->ActiveQP = NULL;
+ GF_List *nextPass = gf_list_new();
+ while (NbPass) {
+  while (gf_list_count(codec->command_buffers)) {
+  }
+  NbPass --;
+  if (NbPass > gf_list_count(codec->command_buffers)) NbPass = gf_list_count(codec->command_buffers);
+
+  //restore QP state
+  while (gf_list_count(codec->QPs) > prev_qp_count) {
+   gf_list_rem(codec->QPs, 0); //QPs are inserted at head of list
+  }
+  codec->ActiveQP = NULL;
+  codec->LastError = GF_OK;
+ }
+ gf_list_del(nextPass);
+ codec->current_graph = prev_root;
+ codec->ActiveQP = prev_qp;
+ return GF_OK;
+}
+
+"
+Heap-based Buffer Overflow in gpac/gpac,,CWE-122: Heap-based Buffer Overflow," char *new_str;
+ if (!str) return;
+ if (strlen(parser->string) + strlen(str) >= parser->length) {
+  parser->length = strlen(parser->string) + strlen(str) + PARSER_STEP_ALLOC;
+  new_str = (char *)gf_malloc(sizeof(char)*parser->length);
+  strcpy(new_str, parser->string);
+  gf_free(parser->string);
+  parser->string = new_str;
+ }
+ strncat(parser->string, str, parser->length - strlen(parser->string) - 1);
+}
+
+static void SFS_AddInt(ScriptParser *parser, s32 val)
+"
+NULL Pointer Dereference in gpac/gpac,,CWE-476: NULL Pointer Dereference," e = gf_odf_desc_read(desc, descSize, &ptr->descriptor);
+ //OK, free our desc
+ gf_free(desc);
+
+ if (e) return e;
+ switch (ptr->descriptor->tag) {
+ case GF_ODF_ISOM_OD_TAG:
+ case GF_ODF_ISOM_IOD_TAG:
+  break;
+ default:
+  GF_LOG(GF_LOG_ERROR, GF_LOG_CONTAINER, (""[iso file] Invalid descriptor in iods, tag %u found but only %u or %u allowed\n"", ptr->descriptor->tag, GF_ODF_ISOM_IOD_TAG, GF_ODF_ISOM_OD_TAG ));
+  return GF_ISOM_INVALID_FILE;
+ }
+ return GF_OK;
+}
+
+GF_Box *iods_box_new()
+  if (!ptr->TimeToSample->nb_entries || !ptr->SampleToChunk->nb_entries)
+   return GF_ISOM_INVALID_FILE;
+ }
+ u32 i, max_chunks=0;
+ if (ptr->ChunkOffset->type == GF_ISOM_BOX_TYPE_STCO) {
+  max_chunks = ((GF_ChunkOffsetBox *)ptr->ChunkOffset)->nb_entries;
+ }
+ else if (ptr->ChunkOffset->type == GF_ISOM_BOX_TYPE_CO64) {
+  max_chunks = ((GF_ChunkOffsetBox *)ptr->ChunkOffset)->nb_entries;
+ }
+
+ //sanity check on stsc vs chunk offset tables
+ for (i=0; i<ptr->SampleToChunk->nb_entries; i++) {
+  GF_StscEntry *ent = &ptr->SampleToChunk->entries[i];
+  if (!i && (ent->firstChunk!=1)) {
+   GF_LOG(GF_LOG_ERROR, GF_LOG_CONTAINER, (""[iso file] first_chunk of first entry shall be 1 but is %u\n"", ent->firstChunk));
+   return GF_ISOM_INVALID_FILE;
+  }
+  if (ptr->SampleToChunk->entries[i].firstChunk > max_chunks) {
+   GF_LOG(GF_LOG_ERROR, GF_LOG_CONTAINER, (""[iso file] first_chunk is %u but number of chunks defined %u\n"", ptr->SampleToChunk->entries[i].firstChunk, max_chunks));
+   return GF_ISOM_INVALID_FILE;
+  }
+  if (i+1 == ptr->SampleToChunk->nb_entries) break;
+  GF_StscEntry *next_ent = &ptr->SampleToChunk->entries[i+1];
+  if (next_ent->firstChunk < ent->firstChunk) {
+   GF_LOG(GF_LOG_ERROR, GF_LOG_CONTAINER, (""[iso file] first_chunk (%u) for entry %u is greater than first_chunk (%u) for entry %u\n"", i+1, ent->firstChunk, i+2, next_ent->firstChunk));
+   return GF_ISOM_INVALID_FILE;
+  }
+ }
+ return GF_OK;
+}
+
+ i=0;
+ while ((trak = (GF_TrackBox *)gf_list_enum(movie->moov->trackList, &i))) {
+  if (trak->Media->handler->handlerType != GF_ISOM_MEDIA_OD) continue;
+
+  //this is an OD track...
+  j = gf_isom_get_sample_count(movie, i);
+  for (k=0; k < j; k++) {
+ //note that we don't touch scal references, as we don't want to rewrite AVC/HEVC samples ...
+ i=0;
+ while ((trak = (GF_TrackBox *)gf_list_enum(movie->moov->trackList, &i))) {
+
+  if (! trak->References || ! gf_list_count(trak->References->child_boxes)) continue;
+
+  j=0;
+"
+NULL Pointer Dereference in gpac/gpac,,CWE-476: NULL Pointer Dereference," sffield.fieldIndex = field->fieldIndex;
+ sffield.fieldType = gf_sg_vrml_get_sf_type(field->fieldType);
+ sffield.NDTtype = field->NDTtype;
+ sffield.name = field->name;
+
+ nbF = 0;
+ qp_on = qp_local = 0;
+ sffield.fieldIndex = field->fieldIndex;
+ sffield.fieldType = gf_sg_vrml_get_sf_type(field->fieldType);
+ sffield.NDTtype = field->NDTtype;
+ sffield.name = field->name;
+
+ initial_qp = qp_local = qp_on = 0;
+
+"
+Heap-based Buffer Overflow in neomutt/neomutt,,CWE-122: Heap-based Buffer Overflow,"  char tmp[2048];
+  struct ImapList listresp = { 0 };
+  char completion[1024];
+  size_t clen;
+  size_t matchlen = 0;
+  int completions = 0;
+  int rc;
+"
+Heap-based Buffer Overflow in allinurl/goaccess,,CWE-122: Heap-based Buffer Overflow," * If the request is a 404, 1 is returned. */
+static int
+is_404 (GLogItem * logitem) {
+  if (!logitem->status || *logitem->status == '\0')
+    return 0;
+  /* is this a 404? */
+  if (!memcmp (logitem->status, ""404"", 3))
+    return 1;
+  /* treat 444 as 404? */
+  else if (!memcmp (logitem->status, ""444"", 3) && conf.code444_as_404)
+    return 1;
+  return 0;
+}
+"
+Use After Free in fcambus/logswan,,CWE-416: Use After Free," * https://www.logswan.org
+ *
+ * Created:      2015-05-31
+ * Last Updated: 2021-12-02
+ *
+ * Logswan is released under the BSD 2-Clause license.
+ * See LICENSE file for details.
+{
+ char *pch = strrchr(request, ' ');
+
+ memset(parsed_request, 0, sizeof(*parsed_request));
+
+ if (pch) {
+  parsed_request->protocol = pch + 1;
+  parsed_request->method = strtok(request, "" "");
+"
+Heap-based Buffer Overflow in allinurl/goaccess,,CWE-122: Heap-based Buffer Overflow,"    LOG_INVALID ((""%s"", line));
+  }
+
+  if (glog->items->errstr && glog->log_erridx < MAX_LOG_ERRORS) {
+    glog->errors[glog->log_erridx++] = xstrdup (glog->items->errstr);
+  }
+}
+"
+Heap-based Buffer Overflow in zyantific/zydis,,CWE-122: Heap-based Buffer Overflow,"    ZYAN_ASSERT(user_buffer);
+    ZYAN_ASSERT(length);
+
+    buffer->is_token_list                   = ZYAN_FALSE;
+    buffer->capacity                        = 0;
+    buffer->string.flags                    = ZYAN_STRING_HAS_FIXED_CAPACITY;
+    buffer->string.vector.allocator         = ZYAN_NULL;
+#if defined(ZYAN_NO_LIBC) // no-libc correlates quite well with kernel environments
+    // We can't use floats in kernel. Initialize them via memcpy hack.
+    // Note: this is only required in the backported version for Zydis v3.0.
+    // Newer version depend on a version of zycore that got rid of the floats.
+
+    ZYAN_STATIC_ASSERT(sizeof(buffer->string.vector.growth_factor) == 4);
+    ZYAN_STATIC_ASSERT(sizeof(buffer->string.vector.shrink_threshold) == 4);
+
+    ZYAN_MEMCPY(&buffer->string.vector.growth_factor, ""\x00\x00\x80\x3F"", 4);
+    ZYAN_MEMCPY(&buffer->string.vector.shrink_threshold, ""\x00\x00\x00\x00"", 4);
+#else
+    buffer->string.vector.growth_factor     = 1.0f;
+    buffer->string.vector.shrink_threshold  = 0.0f;
+#endif
+    buffer->string.vector.destructor        = ZYAN_NULL;
+    buffer->string.vector.element_size      = sizeof(char);
+    buffer->string.vector.size              = 1;
+    buffer->string.vector.capacity          = length;
+    buffer->string.vector.data              = user_buffer;
+
+    *user_buffer = '\0';
+}
+
+    user_buffer = (ZyanU8*)user_buffer + sizeof(ZydisFormatterToken);
+    length -= sizeof(ZydisFormatterToken);
+
+    buffer->is_token_list                  = ZYAN_TRUE;
+    buffer->capacity                       = length;
+    buffer->string.flags                   = ZYAN_STRING_HAS_FIXED_CAPACITY;
+    buffer->string.vector.allocator        = ZYAN_NULL;
+#if defined(ZYAN_NO_LIBC) // no-libc correlates quite well with kernel environments
+    // We can't use floats in kernel. Initialize them via memcpy hack.
+    // Note: this is only required in the backported version for Zydis v3.0.
+    // Newer version depend on a version of zycore that got rid of the floats.
+
+    ZYAN_STATIC_ASSERT(sizeof(buffer->string.vector.growth_factor) == 4);
+    ZYAN_STATIC_ASSERT(sizeof(buffer->string.vector.shrink_threshold) == 4);
+
+    ZYAN_MEMCPY(&buffer->string.vector.growth_factor, ""\x00\x00\x80\x3F"", 4);
+    ZYAN_MEMCPY(&buffer->string.vector.shrink_threshold, ""\x00\x00\x00\x00"", 4);
+#else
+    buffer->string.vector.growth_factor     = 1.0f;
+    buffer->string.vector.shrink_threshold  = 0.0f;
+#endif
+    buffer->string.vector.destructor       = ZYAN_NULL;
+    buffer->string.vector.element_size     = sizeof(char);
+    buffer->string.vector.size             = 1;
+    buffer->string.vector.capacity         = length;
+    buffer->string.vector.data             = user_buffer;
+
+    *(char*)user_buffer = '\0';
+}
+
+"
+Heap-based Buffer Overflow in hoene/libmysofa,,CWE-122: Heap-based Buffer Overflow,"set(CPACK_GENERATOR ""DEB"")
+set(CPACK_DEBIAN_PACKAGE_MAINTAINER ""IOhannes m zmölnig"")
+set(CPACK_PACKAGE_VERSION_MAJOR ""1"")
+set(CPACK_PACKAGE_VERSION_MINOR ""2"")
+set(CPACK_PACKAGE_VERSION_PATCH ""2"")
+set(CPACK_DEBIAN_PACKAGE_DEPENDS ""zlib1g"")
+
+set(PKG_CONFIG_PRIVATELIBS """")
+"
+Heap-based Buffer Overflow in zyantific/zydis,,CWE-122: Heap-based Buffer Overflow,"        zyan_maybe_enable_wpo(""ZydisInfo"")
+        _maybe_set_emscripten_cfg(""ZydisInfo"")
+        install(TARGETS ""ZydisInfo"" RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
+
+
+
+
+
+
+
+
+    endif ()
+endif ()
+"
+Heap-based Buffer Overflow in timetoogo/ff-proxy,,CWE-122: Heap-based Buffer Overflow,"
+    for (uint16_t i = 0; i < packets_count; i++)
+    {
+        ff_log(
+            FF_INFO, ""sending packet %d byte range [%d, %d]"", 
+            i, 0, (int)packets[i].length
+        );
+        chunk_length = sendto(
+            sockfd, 
+            packets[i].value, 
+            (int)packets[i].length, 
+            0, 
+            res->ai_addr, 
+            res->ai_addrlen
+        );
+
+        if (chunk_length <= 0)
+        {
+            printf(""errno: %d\n"", errno);
+            ff_log(FF_FATAL, ""Failed to send UDP datagrams during byte range %d - %hu"", 0, packets[i].length);
+            goto error;
+        }
+
+        sent_length += chunk_length;
+
+
+
+
+
+
+    }
+
+    ff_log(FF_DEBUG, ""Finished sending %d bytes"", sent_length);
+"
+Heap-based Buffer Overflow in hoene/libmysofa,,CWE-122: Heap-based Buffer Overflow,"    163
+    167a
+    167b
+    168
+    171
+)
+    # issues with osx    96)
+    add_test(fail-issue-${ISSUE} ${PROJECT_SOURCE_DIR}/tests/notcrashed.sh
+  /*
+   * find frontal source position
+   */
+  for (i = 0; i + 2 < hrtf->SourcePosition.elements; i += hrtf->C) {
+    c[0] = hrtf->SourcePosition.values[i];
+    c[1] = hrtf->SourcePosition.values[i + 1];
+    c[2] = hrtf->SourcePosition.values[i + 2];
+"
+Classic Buffer Overflow in sjord/checkmate,,CWE-120: Classic Buffer Overflow,"#include <errno.h>
+#endif
+
+/* return matrix[x][y], or 0 if x or y are out of bounds */
+#define matrix_lookup(matrix, x, y) (x < sizeof(matrix) / sizeof(matrix[0]) && y < sizeof(matrix[0]) / sizeof(matrix[0][0]) ? matrix[x][y] : 0)
+
+/* samplerate in Hz of frame fi with headervalue h */
+#define samplerate(h, fi)  matrix_lookup(samplerate_matrix, h, fi->version)
+
+/* the duration of this frame in ms */
+#define frametime(fi)      (1000*fi->samples/fi->samplerate)
+
+/* the number of samples in frame fi */
+#define framesamples(fi)   matrix_lookup(samples_matrix, fi->layer, fi->version)
+
+/* the layer for headervalue h */
+#define layer(h)     (4-(h))
+/* returns bitrate in bps */
+static int bitrate(int headervalue, frame_info * fi)
+{
+ return 1000*matrix_lookup(bitrate_matrix, 3*fi->version+fi->layer-1, headervalue);
+}
+
+static int 
+"
+NULL Pointer Dereference in mruby/mruby,,CWE-476: NULL Pointer Dereference,"{
+  mrb_sym sym = name ? name : nsym(tree->cdr->car);
+  int skip = 0;
+  int n = 0, nk = 0, noop = 0, blk = 0, sp_save = cursp();
+
+  codegen(s, tree->car, VAL); /* receiver */
+  if (safe) {
+  tree = tree->cdr->cdr->car;
+  if (tree) {
+    if (tree->car) {            /* positional arguments */
+      n = gen_values(s, tree->car, VAL, sp?1:0, 14);
+      if (n < 0) {              /* variable length */
+
+        noop = 1;               /* not operator */
+        n = 15;
+        push();
+    if (tree->cdr->car) {       /* keyword arguments */
+      noop = 1;
+      nk = gen_hash(s, tree->cdr->car->cdr, VAL, 14);
+      if (nk < 0) nk = 15;
+
+    }
+  }
+  if (sp) {                     /* last argument pushed (attr=, []=) */
+    /* pack keyword arguments */
+    if (nk > 0 && nk < 15) {
+      pop_n(nk*2);
+      genop_2(s, OP_HASH, cursp(), nk);
+      push();
+    }
+    if (n == CALL_MAXARGS) {
+      if (nk > 0) {
+        pop(); pop();
+        genop_2(s, OP_ARYPUSH, cursp(), 1);
+        push();
+      }
+      gen_move(s, cursp(), sp, 0);
+      pop();
+      genop_2(s, OP_ARYPUSH, cursp(), 1);
+    else {
+      gen_move(s, cursp(), sp, 0);
+      push();
+      if (nk > 0) n++;
+      n++;
+    }
+    nk = 0;
+  }
+  if (tree && tree->cdr && tree->cdr->cdr) {
+    codegen(s, tree->cdr->cdr, VAL);
+    blk = 1;
+  }
+  push();pop();
+  s->sp = sp_save;
+  if (!noop && sym == MRB_OPSYM_2(s->mrb, add) && n == 1)  {
+    gen_addsub(s, OP_ADD, cursp());
+  }
+"
+NULL Pointer Dereference in mruby/mruby,,CWE-476: NULL Pointer Dereference,"        st++;
+      }
+      else {
+        if (!s2) push();
+        else gen_blkmove(s, s2->ainfo, lv);
+        st++;
+      }
+      pop_n(st+1);
+"
+Heap-based Buffer Overflow in hoene/libmysofa,,CWE-122: Heap-based Buffer Overflow,"  else if (verifyAttribute(hrtf->ReceiverPosition.attributes,
+                           ""DIMENSION_LIST"", ""R,C,M""))
+  {
+    if (hrtf->ReceiverPosition.elements != hrtf->C * hrtf->R * hrtf->M)
+      return MYSOFA_INVALID_RECEIVER_POSITIONS;
+
+    for (int i = 0; i < hrtf->C * hrtf->R; i++)
+    {
+      int offset = i * hrtf->M;
+      double receiverPosition = hrtf->ReceiverPosition.values[offset];
+  if (!verifyAttribute(hrtf->ReceiverPosition.attributes, ""Type"", ""cartesian""))
+    return MYSOFA_RECEIVERS_WITH_CARTESIAN_SUPPORTED; // LCOV_EXCL_LINE
+
+  if (hrtf->ReceiverPosition.elements < hrtf->C * hrtf->R ||
+      !fequals(hrtf->ReceiverPosition.values[0], 0.f) ||
+      !fequals(hrtf->ReceiverPosition.values[2], 0.f) ||
+      !fequals(hrtf->ReceiverPosition.values[3], 0.f) ||
+"
+Heap-based Buffer Overflow in hoene/libmysofa,,CWE-122: Heap-based Buffer Overflow,"    137
+    138
+    156
+    163
+    167a
+    167b)
+    # issues with osx    96)
+    add_test(fail-issue-${ISSUE} ${PROJECT_SOURCE_DIR}/tests/notcrashed.sh
+             ${PROJECT_SOURCE_DIR}/tests/fail-issue-${ISSUE})
+static struct MYSOFA_EASY *
+mysofa_open_default(const char *filename, float samplerate, int *filterlength,
+                    int *err, bool applyNorm, float neighbor_angle_step,
+                    float neighbor_radius_step)
+{
+
+  struct MYSOFA_EASY *easy = malloc(sizeof(struct MYSOFA_EASY));
+
+  if (!easy)
+  {
+    *err = MYSOFA_NO_MEMORY;
+    return NULL;
+  }
+  *easy = (struct MYSOFA_EASY){0};
+
+  easy->hrtf = mysofa_load(filename, err);
+  if (!easy->hrtf)
+  {
+    mysofa_close(easy);
+    return NULL;
+  }
+
+  *err = mysofa_check(easy->hrtf);
+  if (*err != MYSOFA_OK)
+  {
+    mysofa_close(easy);
+    return NULL;
+  }
+
+  *err = mysofa_resample(easy->hrtf, samplerate);
+  if (*err != MYSOFA_OK)
+  {
+    mysofa_close(easy);
+    return NULL;
+  }
+
+  if (applyNorm)
+  {
+    mysofa_loudness(easy->hrtf);
+  }
+
+
+  mysofa_tocartesian(easy->hrtf);
+
+  if (easy->hrtf->SourcePosition.elements != easy->hrtf->C * easy->hrtf->M)
+  {
+    *err = MYSOFA_INVALID_FORMAT;
+    mysofa_close(easy);
+    return NULL;
+  }
+
+  easy->lookup = mysofa_lookup_init(easy->hrtf);
+  if (easy->lookup == NULL)
+  {
+    *err = MYSOFA_INTERNAL_ERROR;
+    mysofa_close(easy);
+    return NULL;
+
+MYSOFA_EXPORT struct MYSOFA_EASY *mysofa_open(const char *filename,
+                                              float samplerate,
+                                              int *filterlength, int *err)
+{
+  return mysofa_open_default(filename, samplerate, filterlength, err, true,
+                             MYSOFA_DEFAULT_NEIGH_STEP_ANGLE,
+                             MYSOFA_DEFAULT_NEIGH_STEP_RADIUS);
+MYSOFA_EXPORT struct MYSOFA_EASY *mysofa_open_no_norm(const char *filename,
+                                                      float samplerate,
+                                                      int *filterlength,
+                                                      int *err)
+{
+  return mysofa_open_default(filename, samplerate, filterlength, err, false,
+                             MYSOFA_DEFAULT_NEIGH_STEP_ANGLE,
+                             MYSOFA_DEFAULT_NEIGH_STEP_RADIUS);
+MYSOFA_EXPORT struct MYSOFA_EASY *
+mysofa_open_advanced(const char *filename, float samplerate, int *filterlength,
+                     int *err, bool norm, float neighbor_angle_step,
+                     float neighbor_radius_step)
+{
+  return mysofa_open_default(filename, samplerate, filterlength, err, norm,
+                             neighbor_angle_step, neighbor_radius_step);
+}
+
+MYSOFA_EXPORT struct MYSOFA_EASY *mysofa_open_cached(const char *filename,
+                                                     float samplerate,
+                                                     int *filterlength,
+                                                     int *err)
+{
+  struct MYSOFA_EASY *res = mysofa_cache_lookup(filename, samplerate);
+  if (res)
+  {
+    *filterlength = res->hrtf->N;
+    return res;
+  }
+  res = mysofa_open(filename, samplerate, filterlength, err);
+  if (res)
+  {
+    res = mysofa_cache_store(res, filename, samplerate);
+  }
+  return res;
+MYSOFA_EXPORT void mysofa_getfilter_short(struct MYSOFA_EASY *easy, float x,
+                                          float y, float z, short *IRleft,
+                                          short *IRright, int *delayLeft,
+                                          int *delayRight)
+{
+  float c[3];
+  float delays[2];
+  float *fl;
+
+  fl = easy->fir;
+  fr = easy->fir + easy->hrtf->N;
+  for (i = easy->hrtf->N; i > 0; i--)
+  {
+    *IRleft++ = (short)(*fl++ * 32767.);
+    *IRright++ = (short)(*fr++ * 32767.);
+  }
+}
+
+MYSOFA_EXPORT void mysofa_getfilter_float_advanced(
+    struct MYSOFA_EASY *easy, float x, float y, float z, float *IRleft,
+    float *IRright, float *delayLeft, float *delayRight, bool interpolate)
+{
+  float c[3];
+  float delays[2];
+  float *fl;
+  neighbors = mysofa_neighborhood(easy->neighborhood, nearest);
+
+  // bypass interpolate by forcing current cooordinates to nearest's
+  if (!interpolate)
+  {
+    memcpy(c, easy->hrtf->SourcePosition.values + nearest * easy->hrtf->C,
+           sizeof(float) * easy->hrtf->C);
+  }
+
+  fl = res;
+  fr = res + easy->hrtf->N;
+  for (i = easy->hrtf->N; i > 0; i--)
+  {
+    *IRleft++ = *fl++;
+    *IRright++ = *fr++;
+  }
+MYSOFA_EXPORT void mysofa_getfilter_float(struct MYSOFA_EASY *easy, float x,
+                                          float y, float z, float *IRleft,
+                                          float *IRright, float *delayLeft,
+                                          float *delayRight)
+{
+  mysofa_getfilter_float_advanced(easy, x, y, z, IRleft, IRright, delayLeft,
+                                  delayRight, true);
+}
+
+MYSOFA_EXPORT void
+mysofa_getfilter_float_nointerp(struct MYSOFA_EASY *easy, float x, float y,
+                                float z, float *IRleft, float *IRright,
+                                float *delayLeft, float *delayRight)
+{
+  mysofa_getfilter_float_advanced(easy, x, y, z, IRleft, IRright, delayLeft,
+                                  delayRight, false);
+}
+
+MYSOFA_EXPORT void mysofa_close(struct MYSOFA_EASY *easy)
+{
+  if (easy)
+  {
+    if (easy->fir)
+      free(easy->fir);
+    if (easy->neighborhood)
+  }
+}
+
+MYSOFA_EXPORT void mysofa_close_cached(struct MYSOFA_EASY *easy)
+{
+  mysofa_cache_release(easy);
+}
+#include ""tools.h""
+
+MYSOFA_EXPORT struct MYSOFA_LOOKUP *
+mysofa_lookup_init(struct MYSOFA_HRTF *hrtf)
+{
+  int i;
+  struct MYSOFA_LOOKUP *lookup;
+
+  lookup->theta_max = FLT_MIN;
+  lookup->radius_min = FLT_MAX;
+  lookup->radius_max = FLT_MIN;
+  for (i = 0; i < hrtf->M; i++)
+  {
+    memcpy(origin, hrtf->SourcePosition.values + i * hrtf->C,
+           sizeof(float) * hrtf->C);
+    convertCartesianToSpherical(origin, hrtf->C);
+    if (origin[0] < lookup->phi_min)
+    {
+      lookup->phi_min = origin[0];
+    }
+    if (origin[0] > lookup->phi_max)
+    {
+      lookup->phi_max = origin[0];
+    }
+    if (origin[1] < lookup->theta_min)
+    {
+      lookup->theta_min = origin[1];
+    }
+    if (origin[1] > lookup->theta_max)
+    {
+      lookup->theta_max = origin[1];
+    }
+    if (origin[2] < lookup->radius_min)
+    {
+      lookup->radius_min = origin[2];
+    }
+    if (origin[2] > lookup->radius_max)
+    {
+      lookup->radius_max = origin[2];
+    }
+  }
+   * Allocate kd tree
+   */
+  lookup->kdtree = kd_create();
+  if (!lookup->kdtree)
+  {
+    free(lookup);
+    return NULL;
+  }
+
+  /*
+   * add coordinates to the tree
+   */
+  for (i = 0; i < hrtf->M; i++)
+  {
+    float *f = hrtf->SourcePosition.values + i * hrtf->C;
+    kd_insert((struct kdtree *)lookup->kdtree, f, (void *)(intptr_t)i);
+  }
+ * A return value of -1 = MYSOFA_INTERNAL_ERROR indicates an error
+ */
+MYSOFA_EXPORT int mysofa_lookup(struct MYSOFA_LOOKUP *lookup,
+                                float *coordinate)
+{
+
+  int index;
+  void *res;
+  int success;
+  float r = radius(coordinate);
+  if (r > lookup->radius_max)
+  {
+    r = lookup->radius_max / r;
+    coordinate[0] *= r;
+    coordinate[1] *= r;
+    coordinate[2] *= r;
+  }
+  else if (r < lookup->radius_min)
+  {
+    r = lookup->radius_min / r;
+    coordinate[0] *= r;
+    coordinate[1] *= r;
+    coordinate[2] *= r;
+  }
+
+  success = kd_nearest((struct kdtree *)lookup->kdtree, coordinate, &res);
+  if (success != 0)
+  {
+    return MYSOFA_INTERNAL_ERROR;
+  }
+  index = (uintptr_t)res;
+  return index;
+}
+
+MYSOFA_EXPORT void mysofa_lookup_free(struct MYSOFA_LOOKUP *lookup)
+{
+  if (lookup)
+  {
+    kd_free((struct kdtree *)lookup->kdtree);
+    free(lookup);
+  }
+"
+NULL Pointer Dereference in mruby/mruby,,CWE-476: NULL Pointer Dereference,"#define MRB_STACK_GROWTH 128
+#endif
+
+/* Maximum recursive depth. Should be set lower on memory constrained systems. */
+#ifndef MRB_CALL_LEVEL_MAX
+#define MRB_CALL_LEVEL_MAX 512
+#endif
+
+/* Maximum stack depth. Should be set lower on memory constrained systems.
+  if (ci + 1 == c->ciend) {
+    ptrdiff_t size = ci - c->cibase;
+
+    if (size > MRB_CALL_LEVEL_MAX) {
+      mrb_exc_raise(mrb, mrb_obj_value(mrb->stack_err));
+    }
+    c->cibase = (mrb_callinfo *)mrb_realloc(mrb, c->cibase, sizeof(mrb_callinfo)*size*2);
+    c->ci = c->cibase + size;
+    c->ciend = c->cibase + size * 2;
+      mrb->c->ci->stack[n+1] = args;
+      argc = -1;
+    }
+
+
+
+    ci = cipush(mrb, n, 0, c, NULL, mid, argc);
+    if (argc < 0) argc = 1;
+    if (mrb->c->stbase <= argv && argv < mrb->c->stend) {
+  }
+  ci = mrb->c->ci;
+  n = ci_nregs(ci);
+
+
+
+  p = mrb_proc_ptr(b);
+  ci = cipush(mrb, n, CINFO_SKIP, c, p, mid, 0 /* dummy */);
+  if (argc >= CALL_MAXARGS) {
+"
+Stack-based Buffer Overflow in gwsw/less,,CWE-121: Stack-based Buffer Overflow," extern int tabstops[];
+ extern int ntabstops;
+ extern int tabdefault;
+ char msg[60+((INT_STRLEN_BOUND(int)+1)*TABSTOP_MAX)];
+ int i;
+ PARG p;
+
+"
+Heap-based Buffer Overflow in mruby/mruby,,CWE-122: Heap-based Buffer Overflow,"  case NODE_WHILE:
+  case NODE_UNTIL:
+    {
+
+
+
+
+
+      if (true_always(tree->car)) {
+        if (nt == NODE_UNTIL) {
+          if (val) {
+          goto exit;
+        }
+      }
+
+      uint32_t pos = JMPLINK_START;
+      struct loopinfo *lp = loop_push(s, LOOP_NORMAL);
+
+      if (!val) lp->reg = -1;
+      lp->pc0 = new_label(s);
+      codegen(s, tree->car, VAL);
+      pop();
+      if (nt == NODE_WHILE) {
+"
+NULL Pointer Dereference in mruby/mruby,,CWE-476: NULL Pointer Dereference,"      int lim = a+b*2+1;
+
+      hash = regs[a];
+      mrb_ensure_hash_type(mrb, hash);
+      for (i=a+1; i<lim; i+=2) {
+        mrb_hash_set(mrb, hash, regs[i], regs[i+1]);
+      }
+    CASE(OP_HASHCAT, B) {
+      mrb_value hash = regs[a];
+
+      mrb_ensure_hash_type(mrb, hash);
+      mrb_hash_merge(mrb, hash, regs[a+1]);
+      mrb_gc_arena_restore(mrb, ai);
+      NEXT;
+"
+Heap-based Buffer Overflow in mruby/mruby,,CWE-122: Heap-based Buffer Overflow,"static mrb_bool
+gen_uniop(codegen_scope *s, mrb_sym sym, uint16_t dst)
+{
+  if (no_peephole(s)) return FALSE;
+  struct mrb_insn_data data = mrb_last_insn(s);
+  mrb_int n;
+
+"
+Stack-based Buffer Overflow in rup0rt/pcapfix,,CWE-121: Stack-based Buffer Overflow,"  /* END OF GLOBAL HEADER CHECK */
+
+  /* start checking packets now */
+  res = fix_pcap_packets(pcap, pcap_fix, filesize, global_hdr, hdr_integ, &writebuffer, writepos);
+  free(writebuffer);
+  return(res);
+}
+ *          -3   error (EOF reached while reading input file)
+ *
+ */
+int fix_pcap_packets(FILE *pcap, FILE *pcap_fix, off_t filesize, struct global_hdr_s global_hdr, unsigned short hdr_integ, char **writebuffer, off_t writepos) {
+  struct packet_hdr_s packet_hdr;  /* packet header data */
+  struct packet_hdr_s next_packet_hdr;  /* next packet header data to look forward */
+  char hdrbuffer[sizeof(packet_hdr)*2];  /* the buffer that will be used to find a proper packet */
+  char *tmpbuf;     /* temp write buffer */
+
+  char buffer[PCAP_MAX_SNAPLEN];  /* the packet body */
+  off_t bytes;     /* read/written bytes counter */
+        /* the original length must not be smaller than the included length */
+        if (conint(packet_hdr.incl_len) > conint(packet_hdr.orig_len)) packet_hdr.orig_len = packet_hdr.incl_len;
+
+        /* the included length must not be greater than filesize */
+        if (conint(packet_hdr.incl_len) > filesize-pos) packet_hdr.incl_len = filesize-pos;
+
+        /* print out information */
+        printf(""[+] CORRECTED Packet #%u at position %"" FMT_OFF_T "" (%u | %u | %u | %u).\n"", count, pos, conint(packet_hdr.ts_sec), conint(packet_hdr.ts_usec), conint(packet_hdr.incl_len), conint(packet_hdr.orig_len));
+        corrupted++;
+      /* write this packet */
+
+      // check if there is enough space in buffer
+      off_t totalsize = sizeof(packet_hdr) + conint(packet_hdr.incl_len);
+      if (writepos+totalsize > 1024000) {
+        bytes = fwrite(*writebuffer, writepos, 1, pcap_fix);
+        writepos = 0;
+      }
+
+      /* check if writebuffer is large enough */
+      if (sizeof(packet_hdr) + conint(packet_hdr.incl_len) > 1024000) {
+        tmpbuf = malloc(sizeof(packet_hdr) + conint(packet_hdr.incl_len));
+        memcpy(tmpbuf, *writebuffer, 1024000);
+        free(*writebuffer);
+        writebuffer = &tmpbuf;
+      }
+
+      // put new bytes into write buffer
+      memcpy(*writebuffer+writepos, &packet_hdr, sizeof(packet_hdr));
+      writepos += sizeof(packet_hdr);
+      memcpy(*writebuffer+writepos, buffer, conint(packet_hdr.incl_len));
+      writepos += conint(packet_hdr.incl_len);
+
+      /* remember that this packets timestamp to evaluate futher timestamps */
+          // check if there is enough space in buffer
+          int totalsize = sizeof(packet_hdr) + conint(packet_hdr.incl_len);
+          if (writepos+totalsize > 1024000) {
+            bytes = fwrite(*writebuffer, writepos, 1, pcap_fix);
+            writepos = 0;
+          }
+
+          // put new bytes into write buffer
+          memcpy(*writebuffer+writepos, &packet_hdr, sizeof(packet_hdr));
+          writepos += sizeof(packet_hdr);
+          memcpy(*writebuffer+writepos, buffer, conint(packet_hdr.incl_len));
+          writepos += conint(packet_hdr.incl_len);
+
+          /* remember that this packets timestamp to evaluate futher timestamps */
+              // check if there is enough space in buffer
+              int totalsize = sizeof(packet_hdr) + conint(packet_hdr.incl_len);
+              if (writepos+totalsize > 1024000) {
+                bytes = fwrite(*writebuffer, writepos, 1, pcap_fix);
+                writepos = 0;
+              }
+
+              // put new bytes into write buffer
+              memcpy(*writebuffer+writepos, &packet_hdr, sizeof(packet_hdr));
+              writepos += sizeof(packet_hdr);
+              memcpy(*writebuffer+writepos, buffer, conint(packet_hdr.incl_len));
+              writepos += conint(packet_hdr.incl_len);
+
+              /* remember that this packets timestamp to evaluate futher timestamps */
+  }
+
+  // write remaining data into buffer
+  bytes = fwrite(*writebuffer, writepos, 1, pcap_fix);
+  writepos = 0;
+
+  if (verbose == 0) { print_progress(pos, filesize); }
+ *          -3   error (EOF reached while reading input file)
+ *
+ */
+int fix_pcap_packets(FILE *pcap, FILE *pcap_fix, off_t filesize, struct global_hdr_s global_hdr, unsigned short hdr_integ, char **writebuffer, off_t writepos);
+
+#endif
+
+      /* delete output file due to failure */
+      if (strcmp(filename, filename_fix) != 0) remove(filename_fix);
+      free(filename_fix);
+
+      return(res-10);
+
+
+      /* delete output file due to failure */
+      if (strcmp(filename, filename_fix) != 0) remove(filename_fix);
+      free(filename_fix);
+
+      return(res-10);
+  }
+"
+Heap-based Buffer Overflow in rup0rt/pcapfix,,CWE-122: Heap-based Buffer Overflow,"
+  // we use a buffer to cache 1mb of writing... this way writing is faster and
+  // we can read and write the file at the same time
+  char *writebuffer, *tmpbuf;
+  off_t writepos = 0;
+
+  off_t bytes;                              /* written bytes/blocks counter */
+      }
+
+      if (bh.total_length < 12) {
+        printf(""[-] Block too small ==> SKIPPING.\n"");
+
+        /* reset input file pointer to next block */
+        fseeko(pcap, pos+bh.total_length, SEEK_SET);
+      /* write repaired block into output file */
+      if (verbose >= 2) printf(""[*] Writing block to buffer (%u bytes).\n"", block_pos);
+
+      /* do we need to write the buffer to the file? */
+      if (writepos + block_pos > 1024000) {
+        bytes = fwrite(writebuffer, writepos, 1, pcap_fix);
+        writepos = 0;
+      }
+
+      /* check if writebuffer is large enough */
+      if (block_pos > 1024000) {
+        tmpbuf = malloc(block_pos);
+        memcpy(tmpbuf, writebuffer, 1024000);
+        free(writebuffer);
+        writebuffer = tmpbuf;
+      }
+
+      /* put new bytes into write buffer */
+      memcpy(writebuffer+writepos, new_block, block_pos);
+      writepos += block_pos;
+
+
+  }
+
+  /* write remaining data into buffer */
+  bytes = fwrite(writebuffer, writepos, 1, pcap_fix);
+  writepos = 0;
+
+"
+Heap-based Buffer Overflow in rup0rt/pcapfix,,CWE-122: Heap-based Buffer Overflow,"
+      }
+
+      if (bh.total_length < 12) {
+        printf(""[-] Block too small ==> SKIPPING\n"");
+
+        /* reset input file pointer to next block */
+        fseeko(pcap, pos+bh.total_length, SEEK_SET);
+
+        continue;
+      }
+
+      if (verbose >= 1) printf(""[*] Assuming this blocks size as %"" PRIu32 "" bytes.\n"", bh.total_length);
+      else printf(""[-] Invalid Block size => CORRECTED.\n"");
+
+      if (check == bh.total_length) {
+        /* also the second block size value is correct! */
+
+        if (verbose >= 1) printf(""[+] FOUND: Block (Type: 0x%08"" PRIx32 "", Length: %u) at Position %"" FMT_OFF_T ""\n"", bh.block_type, bh.total_length, i);
+
+        /* set pointer to next block position */
+        fseeko(pcap, i, SEEK_SET);
+"
+Heap-based Buffer Overflow in rup0rt/pcapfix,,CWE-122: Heap-based Buffer Overflow,"
+      /* write sizes of block header to correct positions */
+      block_pos += sizeof(bh.total_length);
+
+      /* check size of block */
+      if (bh.total_length < block_pos) {
+        if (verbose >= 2) printf(""[*] Increasing block buffer to %u\n"", block_pos);
+        tmpbuf = malloc(block_pos);
+        memcpy(tmpbuf, new_block, bh.total_length);
+        free(new_block);
+        new_block = tmpbuf;
+        bh.total_length = block_pos;
+      }
+
+      memcpy(new_block+4, &block_pos, sizeof(bh.total_length));
+      memcpy(new_block+block_pos-4, &block_pos, sizeof(bh.total_length));
+
+"
+Heap-based Buffer Overflow in rup0rt/pcapfix,,CWE-122: Heap-based Buffer Overflow,"    bytes = fread(&bh, sizeof(bh), 1, pcap);
+    if (bytes != 1) return -3;
+
+    /* check for invalid block length / file cut off OR block size < 12 bytes */
+    if (bh.total_length > filesize-pos || bh.total_length < 12) {
+      /* block size is invalid (too small / larger than bytes in input file) */
+
+      if (verbose >= 1) {
+        if (bh.total_length > filesize-pos) printf(""[-] Block Length (%"" PRIu16 "") exceeds file size (%"" FMT_OFF_T "").\n"", bh.total_length, filesize);
+        else printf(""[-] Block Length (%"" PRIu16 "") is too small.\n"", bh.total_length);
+      }
+
+      /* search for next valid block */
+      if (verbose >= 1) printf(""[*] Trying to align next block...\n"");
+  writepos = 0;
+
+  /* FILE HAS BEEN COMPLETELY CHECKED */
+  free(writebuffer);
+
+  /* did we write any SHB blocks at all?
+   * if not this seems to be no pcapng file! */
+  if (shb_num == 0) return(-1);
+"
+Denial of Service in mcfriend99/bird,,CWE-400: Denial of Service,
+Integer Overflow or Wraparound in rockcarry/ffjpeg,,CWE-190: Integer Overflow or Wraparound,"    pb->width  = (int)header.biWidth  > 0 ? (int)header.biWidth  : 0;
+    pb->height = (int)header.biHeight > 0 ? (int)header.biHeight : 0;
+    pb->stride = ALIGN(pb->width * 3, 4);
+    if ((long long)pb->stride * pb->height >= 0x80000000) {
+        printf(""bmp's width * height is out of range !\n"");
+        goto done;
+    }
+    pb->pdata  = malloc((size_t)pb->stride * pb->height);
+    if (pb->pdata) {
+        pdata  = (BYTE*)pb->pdata + pb->stride * pb->height;
+        }
+    }
+
+done:
+    if (fp) fclose(fp);
+    return pb->pdata ? 0 : -1;
+}
+
+"
+Floating Point Comparison with Incorrect Operator in vim/vim,,CWE-1077: Floating Point Comparison with Incorrect Operator," int n = atoi((char *)cp);
+
+ // Catch negative values, overflow and ridiculous big values.
+ if (n <= 0 || n > TABSTOP_MAX)
+ {
+     semsg(_(e_invalid_argument_str), cp);
+     vim_free(*array);
+  bwipeout!
+endfunc
+
+func Test_retab_invalid_arg()
+  new
+  call setline(1, ""\ttext"")
+  retab 0
+  call assert_fails(""retab -8"", 'E487: Argument must be positive')
+  call assert_fails(""retab 10000"", 'E475:')
+  call assert_fails(""retab 720575940379279360"", 'E475:')
+  bwipe!
+endfunc
+
+func Test_vartabs_breakindent()
+  CheckOption breakindent
+  new
+
+static int included_patches[] =
+{   /* Add new patch number below this line */
+/**/
+    4298,
+/**/
+    4297,
+/**/
+"
+Allocation of Resources Without Limits or Throttling in vim/vim,,CWE-770: Allocation of Resources Without Limits or Throttling," else
+ {
+     ea.line1 = ea.line2;
+     if (ea.line2 >= LONG_MAX - (n - 1))
+         ea.line2 = LONG_MAX;  // avoid overflow
+     else
+  ea.line2 += n - 1;
+     ++ea.addr_count;
+     /*
+      * Be vi compatible: no error message for out of range.
+    throw 'Skipped: only works with 64 bit long ints'
+  endif
+  new
+  call setline(1, range(100))
+  call assert_fails('|.44444444444444444444444', 'E1247:')
+  call assert_fails('|.9223372036854775806', 'E1247:')
+
+  $
+  yank 77777777777777777777
+  call assert_equal(""99\n"", @"")
+
+  bwipe!
+endfunc
+
+
+static int included_patches[] =
+{   /* Add new patch number below this line */
+/**/
+    4065,
+/**/
+    4064,
+/**/
+"
+Untrusted Pointer Dereference in vim/vim,,CWE-822: Untrusted Pointer Dereference,"     // a match on this line?
+     match = vim_regexec_multi(&regmatch, curwin, curbuf, lnum,
+             (colnr_T)0, NULL, NULL);
+     if (regmatch.regprog == NULL)
+  break;  // re-compiling regprog failed
+     if ((type == 'g' && match) || (type == 'v' && !match))
+     {
+  ml_setmarked(lnum);
+
+static int included_patches[] =
+{   /* Add new patch number below this line */
+/**/
+    3883,
+/**/
+    3882,
+/**/
+"
