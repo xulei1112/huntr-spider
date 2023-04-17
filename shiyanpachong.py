@@ -45,7 +45,7 @@ if __name__ == '__main__':
 
         new_code=web2.find_elements(By.XPATH,'//*[@data-details-container-group="file"]/div[2]/div/table/tbody/tr/td[4]')
         for i in new_code:
-            if i.isspace():
+            if i.text.isspace():
                 continue
             else:
                 ff+=i.text+'\n'
