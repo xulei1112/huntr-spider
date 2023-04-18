@@ -38,17 +38,15 @@ if __name__ == '__main__':
         web2= Chrome()
         #访问github链接
         web2.get(tt.get_attribute('href')+'?diff=split')
+        #web2.get("https://github.com/icret/EasyImages2.0/commit/1583eec072254afb31d976a186876fe92d1d3ac4?diff=split")
         #获取修复代码#files > div.js-diff-progressive-container
-        ff=""
-        #正则表达式匹配
 
+        #正则表达式匹配
+        ff=""
 
         new_code=web2.find_elements(By.XPATH,'//*[@data-details-container-group="file"]/div[2]/div/table/tbody/tr/td[4]')
         for i in new_code:
-            if i.text.isspace():
-                continue
-            else:
-                ff+=i.text+'\n'
-        with open('e:/test3.csv','a+',newline='',encoding='utf-8') as result:
+            ff+=i.text+'\n'
+        with open('e:/test3.csv','a+',newline='',encoding='gb18030') as result:
             writer=csv.writer(result)
             writer.writerow([ele[0],aa,bb,ff])
