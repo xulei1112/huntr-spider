@@ -14,11 +14,12 @@ if __name__ == '__main__':
         #打开test2.csv准备把爬取内容存入其中
         web.get(j[0])
         #下面的element是爬取wp内容的
-        element=web.find_element(By.ID,'write-up')
-        #截取Description内容，匹配Proof of Concept或者impact之前的内容输出
-        ele=element.text.split('\n')
-        #print(ele[0])
-        #print(ele[4])
+        try:
+            element=web.find_element(By.XPATH,'//*[@id="markdown"]/span/p[1]')
+        except:
+            element=web.find_element(By.XPATH,'//*[@id="title"]')
+        #截取Description内容
+
         #下面的cve是爬取cve与CWE内容的
         cve=web.find_element(By.ID,'meta-container')
         l=cve.text.split('\n')
@@ -37,8 +38,9 @@ if __name__ == '__main__':
         #print(tt.get_attribute('href'))
         web2= Chrome()
         #访问github链接
-        web2.get(tt.get_attribute('href')+'?diff=split')
-        #web2.get("https://github.com/icret/EasyImages2.0/commit/1583eec072254afb31d976a186876fe92d1d3ac4?diff=split")
+        aaa=tt.get_attribute('href')+"?diff=split"
+        print(aaa)
+        web2.get(aaa)
         #获取修复代码#files > div.js-diff-progressive-container
 
         #正则表达式匹配
@@ -49,4 +51,4 @@ if __name__ == '__main__':
             ff+=i.text+'\n'
         with open('e:/test3.csv','a+',newline='',encoding='gb18030') as result:
             writer=csv.writer(result)
-            writer.writerow([ele[0],aa,bb,ff])
+            writer.writerow([element.text,aa,bb,ff,j[0]])
