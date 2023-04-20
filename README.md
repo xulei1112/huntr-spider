@@ -24,7 +24,7 @@ huntr5.py用来爬取指定代码类型的（比如C语言），换成火狐浏�
 ![image](https://user-images.githubusercontent.com/64565724/231638855-715182f1-6b4e-4d1f-8d7d-770a70279179.png)
 
 数据集.zip是爬取好的数据集：
-java_CVE.csv  #空格   共计18
+java_CVE.csv    共计18
 
 java_notCVE.csv        共计48
 
