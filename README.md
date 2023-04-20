@@ -23,3 +23,17 @@ huntr4.py用来爬取github中的漏洞修复代码与漏洞代码
 huntr5.py用来爬取指定代码类型的（比如C语言），换成火狐浏览器驱动，防止内存溢出，导致无法大量爬取数据
 ![image](https://user-images.githubusercontent.com/64565724/231638855-715182f1-6b4e-4d1f-8d7d-770a70279179.png)
 
+数据集.zip是爬取好的数据集：
+java_CVE.csv     有CVE编号的java语言漏洞patch           共计18
+java_notCVE.csv  没有CVE编号的java语言的漏洞patch       共计48
+python_CVE.csv                            			      共计113
+python_notCVE.csv					              共计116
+C_CVE.csv				                        共计173
+C_notCVE.csv					                  共计65
+js_CVE.csv					                    共计182
+js_notCVE.csv					                  共计194
+PHP_CVE.csv                             共计508
+PHP_notCVE.csv				                  共计1031
+第一列为漏洞描述，第二列为CVE编号，第三列为CWE，第四列为patch，第五列为漏洞文章的url，可以用来对照
+总计：有CVE的patch 共计18+113+173+182+508=994
+     没有CVE的patch 共计48+116+65+194+1031=1454
