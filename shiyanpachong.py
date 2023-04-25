@@ -34,7 +34,10 @@ if __name__ == '__main__':
                 #print(i)
                 bb=i
         #tt是定位github的修复代码链接
-        tt=web.find_element(By.CSS_SELECTOR,'#message-box > div.text-sm.font-medium.w-full.mt-1 > div:nth-child(1) > div.inline-block.self-center.mx-2 > a.break-words.hover\:text-blue-400.hover\:underline')
+        try:
+            tt=web.find_element(By.CSS_SELECTOR,'#message-box > div.text-sm.font-medium.w-full.mt-1 > div:nth-child(1) > div.inline-block.self-center.mx-2 > a.break-words.hover\:text-blue-400.hover\:underline')
+        except:                                  
+            tt=web.find_element(By.CSS_SELECTOR,'#message-box > div.text-sm.font-medium.w-full.mt-1 > div:nth-child(1) > div.inline-block.self-center.mx-2 > a.break-words.hover\:text-blue-400.hover\:underline')
         #print(tt.get_attribute('href'))
         web2= Chrome()
         #访问github链接
@@ -45,10 +48,17 @@ if __name__ == '__main__':
 
         #正则表达式匹配
         ff=""
-
+        tt=""
+        old_code=web2.find_elements(By.XPATH,'//*[@data-details-container-group="file"]/div[2]/div/table/tbody/tr/td[2]')
+        for i in old_code:
+            if "@@" in i.text:
+                tt+=i.text[i.text.rfind('@@')+2::]+'\n'
+                continue
+            else:
+                tt+=i.text+'\n' 
         new_code=web2.find_elements(By.XPATH,'//*[@data-details-container-group="file"]/div[2]/div/table/tbody/tr/td[4]')
         for i in new_code:
             ff+=i.text+'\n'
         with open('e:/test3.csv','a+',newline='',encoding='gb18030') as result:
             writer=csv.writer(result)
-            writer.writerow([element.text,aa,bb,ff,j[0]])
+            writer.writerow([element.text,aa,bb,tt,ff,j[0]])
